@@ -50,7 +50,7 @@ const listAnnouncements: IAnnouncement[] = [
     is_published: true,
     user: {
       id: "a13d51ad3a1d3a5d1a3d5a3d1a",
-      name: "Samuel Leão",
+      name: "Samuel",
     },
     image: [car_image, car_image, car_image],
   },

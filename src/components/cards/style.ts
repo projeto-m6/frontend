@@ -55,16 +55,6 @@ export const Infos = styled("div", {
     fontWeight: 500,
     fontFamily: "Inter",
   },
-  "#material-ui": {
-    backgroundColor: "$brand1",
-    fontSize: "16px",
-    color: "$white",
-    borderRadius: "50px",
-    fontFamily: "Inter",
-    padding: "8px",
-    fontWeight: 500,
-    marginRight: "10px",
-  },
 });
 
 export const Details = styled("div", {
