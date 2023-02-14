@@ -27,9 +27,10 @@ export const Input = <T extends Record<string, any>>({
   ...rest
 }: InputProps<T>) => {
   return (
-    <Container>
+    <Container error={!!(errors && errors[name])}>
       <Label>{label}</Label>
       <input {...register(name, rules)} {...rest} />
+      {errors && errors[name] && <span>{errors[name].message}</span>}
     </Container>
   );
 };
