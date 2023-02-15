@@ -26,10 +26,10 @@ export const Container = styled('div', {
     resize: 'none',
   },
 
-  span: {
-    fontSize: '0.75rem',
-    color: '$alert1',
-  },
+  // span: {
+  //   fontSize: '0.75rem',
+  //   color: '$alert1',
+  // },
 
   variants: {
     error: {
@@ -40,4 +40,9 @@ export const Container = styled('div', {
       },
     },
   },
+});
+
+export const ErrorMessage = styled('span', {
+  fontSize: '0.75rem',
+  color: '$alert1',
 });

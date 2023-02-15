@@ -8,7 +8,7 @@ import {
   UseFormRegister,
 } from 'react-hook-form';
 import { Label } from '../../styles/typography';
-import { Container } from './styles';
+import { Container, ErrorMessage } from './styles';
 
 interface InputProps<T extends FieldValues> extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -30,7 +30,7 @@ export const Input = <T extends Record<string, any>>({
     <Container error={!!(errors && errors[name])}>
       <Label>{label}</Label>
       <input {...register(name, rules)} {...rest} />
-      {errors && errors[name] && <span>{errors[name].message}</span>}
+      {errors && errors[name] && <ErrorMessage>{errors[name].message}</ErrorMessage>}
     </Container>
   );
 };
