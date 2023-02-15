@@ -1,35 +1,47 @@
-import { styled } from "../../styles/stitches.config";
+import styled from "styled-components";
 
-export const Container = styled("footer", {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "140px",
-  width: "100%",
-  backgroundColor: "$grey0",
+export const Container = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: ${({ theme }) => theme.grey0};
 
-  div: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "90%",
-  },
+  & > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
 
-  "#logotipo": {
-    width: "153px",
-    height: "23px",
-  },
+    width: 90%;
+    height: 200px;
 
-  p: {
-    color: "$white",
-    fontSize: "14px",
-  },
+    padding: 30px 0px;
 
-  button: {
-    width: "50px",
-    height: "50px",
-    backgroundColor: "$grey1",
-    border: "none",
-    borderRadius: "4px",
-  },
-});
+    & > p {
+      color: ${({ theme }) => theme.white};
+      font-size: 14px;
+    }
+
+    & > button {
+      width: 50px;
+      height: 50px;
+      background-color: ${({ theme }) => theme.grey1};
+      border: "none";
+      border-radius: 4px;
+    }
+  }
+  @media (min-width: 764px) {
+    & > div {
+      flex-direction: row;
+      padding: 0px;
+      height: 140px;
+    }
+  }
+
+  #logotipo {
+    width: 153px;
+    height: 23px;
+  }
+`;
