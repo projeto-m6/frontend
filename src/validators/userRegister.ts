@@ -24,3 +24,10 @@ export const userRegister = yup.object().shape({
     .required('Confirmação de senha obrigatória')
     .oneOf([yup.ref('password')], 'Senha não correspondem'),
 });
+
+
+export const createAnnouncement = yup.object().shape({
+  is_sale: yup.boolean().required('Tipo de anúncio obrigatório'),
+  title: yup.string().required('Título obrigatório').max(60, 'O título pode ter no máximo precisa ter no máximo 60 caracteres'),
+  year: yup.string().required('Ano obrigatório').min(4, 'O ano precisa ter no mínimo 4 dígitos').max(4, 'O ano precisa ter no máximo 4 dígitos')
+})
