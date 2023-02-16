@@ -1,4 +1,5 @@
 import car_image from "../../public/EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png";
+import moto_image from "../../public/EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1 (1).png";
 
 export interface IAnnouncement {
   id: string;
@@ -37,7 +38,7 @@ const listAnnouncements: IAnnouncement[] = [
     },
     image: [car_image, car_image, car_image],
   },
-  
+
   {
     id: "3adw1ad35-1a3wd1a3aw5-3aw1d5awd351-3a2w1da31d5a5wd1",
     is_sale: true,
@@ -217,13 +218,13 @@ const listAnnouncements: IAnnouncement[] = [
     price: "R$ 00.000,00",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-    is_car: true,
+    is_car: false,
     is_published: true,
     user: {
       id: "a13d51ad3a1d3a5d1a3d5a3d1a",
       name: "Samuel Leão",
     },
-    image: [car_image, car_image, car_image],
+    image: [moto_image, moto_image, moto_image],
   },
   {
     id: "3adw1ad35-1a3wd1a3aw5-3aw1d5awd351-3a2w1da31d5a5wd1",
@@ -234,13 +235,13 @@ const listAnnouncements: IAnnouncement[] = [
     price: "R$ 00.000,00",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-    is_car: true,
+    is_car: false,
     is_published: true,
     user: {
       id: "a13d51ad3a1d3a5d1a3d5a3d1a",
       name: "Samuel Leão",
     },
-    image: [car_image, car_image, car_image],
+    image: [moto_image, moto_image, moto_image],
   },
   {
     id: "3adw1ad35-1a3wd1a3aw5-3aw1d5awd351-3a2w1da31d5a5wd1",
@@ -251,13 +252,13 @@ const listAnnouncements: IAnnouncement[] = [
     price: "R$ 00.000,00",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-    is_car: true,
+    is_car: false,
     is_published: true,
     user: {
       id: "a13d51ad3a1d3a5d1a3d5a3d1a",
       name: "Samuel",
     },
-    image: [car_image, car_image, car_image],
+    image: [moto_image, moto_image, moto_image],
   },
   {
     id: "3adw1ad35-1a3wd1a3aw5-3aw1d5awd351-3a2w1da31d5a5wd1",
@@ -268,13 +269,13 @@ const listAnnouncements: IAnnouncement[] = [
     price: "R$ 00.000,00",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-    is_car: true,
+    is_car: false,
     is_published: true,
     user: {
       id: "a13d51ad3a1d3a5d1a3d5a3d1a",
       name: "Samuel Leão",
     },
-    image: [car_image, car_image, car_image],
+    image: [moto_image, moto_image, moto_image],
   },
   {
     id: "3adw1ad35-1a3wd1a3aw5-3aw1d5awd351-3a2w1da31d5a5wd1",
@@ -285,13 +286,13 @@ const listAnnouncements: IAnnouncement[] = [
     price: "R$ 00.000,00",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-    is_car: true,
+    is_car: false,
     is_published: true,
     user: {
       id: "a13d51ad3a1d3a5d1a3d5a3d1a",
       name: "Samuel Leão",
     },
-    image: [car_image, car_image, car_image],
+    image: [moto_image, moto_image, moto_image],
   },
   {
     id: "3adw1ad35-1a3wd1a3aw5-3aw1d5awd351-3a2w1da31d5a5wd1",
@@ -302,13 +303,13 @@ const listAnnouncements: IAnnouncement[] = [
     price: "R$ 00.000,00",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-    is_car: true,
+    is_car: false,
     is_published: true,
     user: {
       id: "a13d51ad3a1d3a5d1a3d5a3d1a",
       name: "Samuel",
     },
-    image: [car_image, car_image, car_image],
+    image: [moto_image, moto_image, moto_image],
   },
   {
     id: "3adw1ad35-1a3wd1a3aw5-3aw1d5awd351-3a2w1da31d5a5wd1",
@@ -319,13 +320,13 @@ const listAnnouncements: IAnnouncement[] = [
     price: "R$ 00.000,00",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-    is_car: true,
+    is_car: false,
     is_published: true,
     user: {
       id: "a13d51ad3a1d3a5d1a3d5a3d1a",
       name: "Samuel Leão",
     },
-    image: [car_image, car_image, car_image],
+    image: [moto_image, moto_image, moto_image],
   },
 ];
 

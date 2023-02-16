@@ -1,67 +1,94 @@
-import { styled } from "../../styles/stitches.config";
+import { width } from "@mui/system";
+import styled, { css, keyframes } from "styled-components";
 
-export const ContainerHeader = styled("div", {
-  width: "100vw",
-  height: "80px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-around",
-  background: "#FDFDFD",
-  borderBottom: "2px solid #DEE2E6",
-  backgroundColor: "#ffffff",
-});
+const dropDown = keyframes`
+  0%{
+    top: -190px;
+    opacity: 0;
+  }
+  100%{
+    top: 0;
+    opacity: 1;
+  }
+`;
 
-export const NavLinks = styled("div", {
-  display: "flex",
-  gap: "20px",
-  height: "100%",
-});
+export const ContainerHeader = styled.div`
+  position: relative;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fdfdfd;
+  border-bottom: 2px solid #dee2e6;
+  background-color: #ffffff;
 
-export const Links = styled("div", {
-  display: "flex",
-  gap: "44px",
-  borderRight: "1px solid #DEE2E6",
-  paddingRight: "44px",
-  height: "100%",
-  alignItems: "center",
-  justifyContent: "center",
+  animation: ${dropDown} 0.7s forwards;
 
-  p: {
-    cursor: "pointer",
-  },
+  #width {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+  }
 
-  "p:hover": {
-    color: "$grey3",
-  },
-});
+  & > img {
+    width: 156px;
+    height: 26px;
+  }
+`;
 
-export const NavButtons = styled("div", {
-  alignItems: "center",
-  justifyContent: "center",
-  paddingLeft: "20px",
-  height: "100%",
-  display: "flex",
-  gap: "20px",
+export const NavLinks = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+`;
 
-  ".login": {
-    background: "transparent",
-    border: "none",
-  },
+export const Links = styled.div`
+  display: flex;
+  gap: 44px;
+  border-right: 1px solid #dee2e6;
+  padding-right: 44px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 
-  ".register": {
-    background: "transparent",
-    border: "2px solid #DEE2E6",
-    padding: "15px",
-    borderRadius: "1rem",
-    boxShadow: "none",
+  & > p {
+    cursor: pointer;
+    :hover {
+      color: ${({ theme }) => theme.grey3};
+    }
+  }
+`;
 
-    p: {
-      color: "#0B0D0D",
-    },
-  },
+export const NavButtons = styled.div`
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+  height: 100%;
+  display: flex;
+  gap: 20px;
 
-  "button:hover p": {
-    color: "$grey3",
-    borderColor: "$grey3",
-  },
-});
+  .login {
+    background: transparent;
+    border: none;
+  }
+
+  .register {
+    background: transparent;
+    border: 2px solid #dee2e6;
+    padding: 15px;
+    border-radius: 1rem;
+    box-shadow: none;
+
+    & > p {
+      color: #0b0d0d;
+    }
+  }
+
+  button:hover p {
+    color: ${({ theme }) => theme.grey3};
+    border-color: ${({ theme }) => theme.grey3};
+  }
+`;
