@@ -3,11 +3,7 @@ import * as yup from 'yup';
 export const userRegister = yup.object().shape({
   name: yup.string().required('Nome obrigatório'),
   email: yup.string().required('Email obrigatório').email('Email incorreto'),
-  cpf: yup
-    .string()
-    .required('Cpf obrigatório')
-    .min(14, 'Minimo de 11 digitos')
-    .max(14, 'Máximo de 11 digitos'),
+  cpf: yup.string().required('Cpf obrigatório').min(14, 'Minimo de 11 digitos'),
   cell: yup.string().required('Contato obrigatório'),
   birthdate: yup.string().required('Data de nascimento obrigatório'),
   description: yup.string().required('Descrição obrigatório'),

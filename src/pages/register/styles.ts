@@ -29,6 +29,7 @@ export const Button = styled('button', {
   fontFamily: 'Inter',
   fontSize: '1rem',
   fontWeight: 600,
+  width: '100%',
 
   cursor: 'pointer',
 });
