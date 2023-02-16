@@ -3,9 +3,11 @@ import styled from "styled-components";
 export const AuctionContainer = styled.div``;
 
 export const AuctionArticle = styled.article`
+  width: 46%;
   min-width: 20.5rem;
   max-width: 45.9375rem;
   border-radius: 0.3125rem;
+  flex-shrink: 0;
 `;
 
 export const AuctionImage = styled.section`
