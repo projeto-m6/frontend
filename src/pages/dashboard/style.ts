@@ -1,21 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-const load = keyframes`
-  0%{
-    opacity: 0;
-  }
-  50%{
-    opacity: 0;
-  }
-  100%{
-    opacity: 1;
-  }
-`;
-
-export const Main = styled.main`
-  animation: ${load} 1.5s forwards;
-`;
-
 export const Showcase = styled.div`
   display: flex;
   flex-direction: column;

@@ -1,6 +1,6 @@
 import * as S from "./style";
 import Logo from "../../assets/Motors shop.png";
-import { B1600, H5500 } from "../../styles/typography";
+import { B1600 } from "../../styles/typography";
 import { useState } from "react";
 import { MenuHamburguer } from "../MenuHamburguer";
 
