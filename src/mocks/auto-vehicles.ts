@@ -37,6 +37,7 @@ const listAnnouncements: IAnnouncement[] = [
     },
     image: [car_image, car_image, car_image],
   },
+  
   {
     id: "3adw1ad35-1a3wd1a3aw5-3aw1d5awd351-3a2w1da31d5a5wd1",
     is_sale: true,
