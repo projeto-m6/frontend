@@ -6,26 +6,13 @@ import Modal from '@mui/material/Modal';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createAnnouncement } from '../../validators/createAnnouncement';
-import { Form } from './style';
+import { Form, ModalStyle } from './style';
 import { B2500, H5500 } from '../../styles/typography';
 import { InputRadio } from '../InputRadio';
 import { ErrorMessage } from '../Input/styles';
 import { Input } from '../Input';
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 500,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-  overflow:'scroll',
-  height:'100%',
-  
-};
+
 
 interface IImage{
   image_url: string
@@ -66,9 +53,6 @@ export const ModalCreateAnnouncement = () => {
   const handleClose = () => setOpen(false);
  
   
-  
-
-
   const onSubmit = (data: ICreateAnnouncement) => {
     console.log(data);
   };
@@ -84,7 +68,7 @@ export const ModalCreateAnnouncement = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={ModalStyle}>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <H5500 id='aria-labelledby'>Criar anúncio</H5500>
             <B2500>Tipo de conta</B2500>
@@ -183,7 +167,7 @@ export const ModalCreateAnnouncement = () => {
             errors={errors}
           />
 
-        <Button type="button">Adicionar campo para imagem da galeria</Button>
+        <Button variant='contained' sx={{backgrounColor:'#EDEAFD', color: '#4529E6'}} type="button">Adicionar campo para imagem da galeria</Button>
 
         <Button type="submit">Finalizar Cadastro</Button>
           </Form>
