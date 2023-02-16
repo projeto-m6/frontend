@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AuctionContainer = styled.div``;
 
@@ -94,7 +94,7 @@ export const AuctionText = styled.div`
 `;
 
 export const AuctionFooter = styled.div`
-  font-family: 'Inter';
+  font-family: "Inter";
   font-weight: 600;
   font-size: 1rem;
   display: flex;
@@ -125,7 +125,7 @@ export const AuctionFooterAdvertiser = styled.div`
     background-color: transparent;
     padding: 1.1875rem 1.25rem;
 
-    font-family: 'Inter';
+    font-family: "Inter";
     font-weight: 600;
     font-size: 0.875rem;
 
