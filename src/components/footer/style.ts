@@ -19,7 +19,6 @@ export const Container = styled.footer`
   height: 100%;
   width: 100%;
   background-color: ${({ theme }) => theme.grey0};
-  margin-top: 50px;
 
   animation: ${dropUp} 1.5s forwards;
 
