@@ -7,6 +7,8 @@ export const Container = styled("div", {
 
   width: "312px",
   height: "360px",
+
+  marginRight: "10px",
 });
 
 export const Image = styled("div", {
@@ -32,6 +34,7 @@ export const Infos = styled("div", {
   flexDirection: "column",
   justifyContent: "space-evenly",
   height: "100%",
+  width: "312px",
 
   h2: {
     fontFamily: "Lexend",

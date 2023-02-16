@@ -1,12 +1,27 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+const dropUp = keyframes`
+  0%{
+    bottom: -300px;
+    opacity: 0;
+  }
+  100%{
+    bottom: 0;
+    opacity: 1;
+  }
+`;
 
 export const Container = styled.footer`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
   background-color: ${({ theme }) => theme.grey0};
+  margin-top: 50px;
+
+  animation: ${dropUp} 1.5s forwards;
 
   & > div {
     display: flex;
