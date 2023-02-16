@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { AuctionCards } from "../../components/AuctionCards";
 import Card from "../../components/cards";
 import Footer from "../../components/footer";
+
+import { ModalCreateAnnouncement } from "../../components/ModalCreateAnnouncement";
 import { Header } from "../../components/Header";
 import { MenuSlide } from "../../components/MenuSlide";
 import { Standard } from "../../components/Standard";
