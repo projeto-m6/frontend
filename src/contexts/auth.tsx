@@ -52,7 +52,13 @@ export interface Announcement {
   images: Image[];
 }
 
-type IUser = Omit<ISignInRequest, 'password' | 'address'> & { announcements: Announcement[] };
+// type IUser = Omit<ISignInRequest, 'password' | 'address'> & { announcements: Announcement[] };
+
+export interface IUser extends Omit<ISignInRequest, 'password' | 'address'> {
+  id: string;
+  address: Address & { id: string };
+  announcements: Announcement[];
+}
 
 interface AuthContextData {
   user: IUser | null;
