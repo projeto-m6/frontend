@@ -1,5 +1,4 @@
-import { width } from "@mui/system";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const dropDown = keyframes`
   0%{
@@ -39,10 +38,14 @@ export const ContainerHeader = styled.div`
 `;
 
 export const NavLinks = styled.div`
-  display: flex;
+  display: none;
   align-items: center;
   gap: 20px;
   height: 100%;
+
+  @media (min-width: 764px) {
+    display: flex;
+  }
 `;
 
 export const Links = styled.div`
@@ -71,8 +74,13 @@ export const NavButtons = styled.div`
   gap: 20px;
 
   .login {
+    font-family: 'Inter';
+    font-weight: 600;
     background: transparent;
     border: none;
+    color: ${({ theme }) => theme.brand1};
+
+    cursor: pointer;
   }
 
   .register {
@@ -82,13 +90,96 @@ export const NavButtons = styled.div`
     border-radius: 1rem;
     box-shadow: none;
 
-    & > p {
-      color: #0b0d0d;
-    }
+    cursor: pointer;
   }
 
   button:hover p {
     color: ${({ theme }) => theme.grey3};
     border-color: ${({ theme }) => theme.grey3};
+  }
+`;
+
+export const MenuWithoutUser = styled.nav`
+  position: relative;
+
+  cursor: pointer;
+
+  svg {
+    font-size: 3rem;
+  }
+
+  div {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: max-content;
+
+    background-color: ${({ theme }) => theme.grey9};
+    border-radius: 0.25rem;
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+
+      li {
+        font-family: 'Inter';
+        font-weight: 400;
+        color: ${({ theme }) => theme.grey2};
+        padding: 1rem 3.625rem 1rem 1.375rem;
+      }
+      li:hover {
+        background-color: ${({ theme }) => theme.grey4};
+      }
+    }
+  }
+  &:hover div {
+    display: flex;
+  }
+
+  @media (min-width: 764px) {
+    display: none;
+  }
+`;
+
+export const MenuWithUser = styled.div`
+  position: relative;
+  cursor: pointer;
+
+  & span:last-child {
+    font-family: 'Inter';
+    font-size: 1rem;
+    font-weight: 400;
+    color: ${({ theme }) => theme.grey2};
+  }
+
+  div {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: max-content;
+
+    background-color: ${({ theme }) => theme.grey9};
+    border-radius: 0.25rem;
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+
+      li {
+        font-family: 'Inter';
+        font-weight: 400;
+        color: ${({ theme }) => theme.grey2};
+        padding: 1rem 3.625rem 1rem 1.375rem;
+        cursor: pointer;
+      }
+      li:hover {
+        background-color: ${({ theme }) => theme.grey4};
+      }
+    }
+  }
+  &:hover div {
+    display: flex;
   }
 `;

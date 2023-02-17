@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 export const userRegister = yup.object().shape({
   name: yup.string().required('Nome obrigatório'),
-  email: yup.string().required('Email obrigatório').email('Email incorreto'),
+  email: yup.string().required('Email obrigatório').email('Email inválido'),
   cpf: yup.string().required('Cpf obrigatório').min(14, 'Minimo de 11 digitos'),
   cell: yup.string().required('Contato obrigatório'),
   birthdate: yup.string().required('Data de nascimento obrigatório'),
@@ -20,10 +20,3 @@ export const userRegister = yup.object().shape({
     .required('Confirmação de senha obrigatória')
     .oneOf([yup.ref('password')], 'Senha não correspondem'),
 });
-
-
-export const createAnnouncement = yup.object().shape({
-  is_sale: yup.boolean().required('Tipo de anúncio obrigatório'),
-  title: yup.string().required('Título obrigatório').max(60, 'O título pode ter no máximo precisa ter no máximo 60 caracteres'),
-  year: yup.string().required('Ano obrigatório').min(4, 'O ano precisa ter no mínimo 4 dígitos').max(4, 'O ano precisa ter no máximo 4 dígitos')
-})
