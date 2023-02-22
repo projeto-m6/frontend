@@ -29,7 +29,9 @@ export const Header = () => {
                 <>
                   <li>Editar Perfil</li>
                   <li>Editar Endereço</li>
-                  {!user.is_buyer && <li>Meus Anúncios</li>}
+                  {!user.is_buyer && (
+                    <li onClick={() => navigate('/myAds', { replace: true })}>Meus Anúncios</li>
+                  )}
                   <li onClick={signOut}>Sair</li>
                 </>
               ) : (
@@ -55,7 +57,9 @@ export const Header = () => {
                 <ul>
                   <li>Editar Perfil</li>
                   <li>Editar Endereço</li>
-                  {!user.is_buyer && <li>Meus Anúncios</li>}
+                  {!user.is_buyer && (
+                    <li onClick={() => navigate('/myAds', { replace: true })}>Meus Anúncios</li>
+                  )}
                   <li onClick={signOut}>Sair</li>
                 </ul>
               </div>

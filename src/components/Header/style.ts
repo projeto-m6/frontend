@@ -22,6 +22,7 @@ export const ContainerHeader = styled.div`
   border-bottom: 2px solid #dee2e6;
   background-color: #ffffff;
 
+  z-index: 1;
   animation: ${dropDown} 0.7s forwards;
 
   #width {
@@ -143,6 +144,9 @@ export const MenuWithoutUser = styled.nav`
 `;
 
 export const MenuWithUser = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   cursor: pointer;
 
