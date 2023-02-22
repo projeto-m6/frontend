@@ -13,22 +13,8 @@ import { Header } from '../../components/Header';
 import { AuthContext, ISignInRequest } from '../../contexts/auth';
 import { ModalSuccess } from '../../components/ModalSuccess';
 
-interface IUserRegisterForm {
-  name: string;
-  email: string;
-  cpf: string;
-  cell: string;
-  birthdate: string;
-  description: string;
-  password: string;
+interface IUserRegisterForm extends ISignInRequest {
   confirmPassword: string;
-  is_buyer: boolean;
-  cep: string;
-  state: string;
-  city: string;
-  road: string;
-  number: string;
-  complement: string;
 }
 
 export const Register = () => {
@@ -46,31 +32,13 @@ export const Register = () => {
   const [cep, setCep] = useState('');
   const [phone, setPhone] = useState('');
 
-  const [openModal, setOpenModal] = useState(false);
+  const [openModalSucces, setOpenModalSuccess] = useState(false);
 
   const onSubmit = async (data: IUserRegisterForm) => {
-    const newData: ISignInRequest = {
-      name: data.name,
-      email: data.email,
-      cpf: data.cpf,
-      cell: data.cell,
-      birthdate: data.birthdate,
-      description: data.description,
-      password: data.password,
-      is_buyer: data.is_buyer,
-      address: {
-        cep: data.cep,
-        state: data.state,
-        city: data.city,
-        road: data.road,
-        number: data.number,
-        complement: data.number,
-      },
-    };
-    if (await signIn(newData)) {
-      setOpenModal(true);
+    const { confirmPassword, ...rest } = data;
+    if (await signIn(rest)) {
+      setOpenModalSuccess(true);
     }
-    console.log(newData);
   };
 
   return (
@@ -85,21 +53,21 @@ export const Register = () => {
             placeholder="Ex: Samuel Leão"
             name="name"
             register={register}
-            errors={errors}
+            errors={errors.name}
           />
           <Input
             label="Email"
             placeholder="Ex: samuel@kenzie.com.br"
             name="email"
             register={register}
-            errors={errors}
+            errors={errors.email}
           />
           <Input
             label="CPF"
             placeholder="000.000.000-00"
             name="cpf"
             register={register}
-            errors={errors}
+            errors={errors.cpf}
             value={cpf}
             rules={{
               onChange: (e) => setCpf(cpfMask(e.target.value)),
@@ -110,7 +78,7 @@ export const Register = () => {
             placeholder="(DDD) 90000-0000"
             name="cell"
             register={register}
-            errors={errors}
+            errors={errors.cell}
             value={phone}
             rules={{
               onChange: (e) => setPhone(phoneMask(e.target.value)),
@@ -121,22 +89,22 @@ export const Register = () => {
             type="date"
             name="birthdate"
             register={register}
-            errors={errors}
+            errors={errors.birthdate}
           />
           <Input
             label="Descrição"
             placeholder="Digitar descrição"
             name="description"
             register={register}
-            errors={errors}
+            errors={errors.description}
           />
           <B2500>Informações de endereço</B2500>
           <Input
             label="CEP"
             placeholder="00000-000"
-            name="cep"
+            name="address.cep"
             register={register}
-            errors={errors}
+            errors={errors.address?.cep}
             value={cep}
             rules={{
               onChange: (e) => setCep(cepMask(e.target.value)),
@@ -146,39 +114,39 @@ export const Register = () => {
             <Input
               label="Estado"
               placeholder="Digitar Estado"
-              name="state"
+              name="address.state"
               register={register}
-              errors={errors}
+              errors={errors.address?.state}
             />
             <Input
               label="Cidade"
               placeholder="Digitar Cidade"
-              name="city"
+              name="address.city"
               register={register}
-              errors={errors}
+              errors={errors.address?.city}
             />
           </div>
           <Input
             label="Rua"
             placeholder="Digitar rua"
-            name="road"
+            name="address.road"
             register={register}
-            errors={errors}
+            errors={errors.address?.road}
           />
           <div className="flex">
             <Input
               label="Numero"
               placeholder="Digitar numero"
-              name="number"
+              name="address.number"
               register={register}
-              errors={errors}
+              errors={errors.address?.number}
             />
             <Input
               label="Complemento"
               placeholder="Ex: apart 307"
-              name="complement"
+              name="address.complement"
               register={register}
-              errors={errors}
+              errors={errors.address?.complement}
             />
           </div>
           <B2500>Tipo de conta</B2500>
@@ -206,7 +174,7 @@ export const Register = () => {
             placeholder="Digitar senha"
             name="password"
             register={register}
-            errors={errors}
+            errors={errors.password}
           />
           <Input
             label="Confirmar senha"
@@ -214,12 +182,19 @@ export const Register = () => {
             placeholder="confirmar senha"
             name="confirmPassword"
             register={register}
-            errors={errors}
+            errors={errors.confirmPassword}
           />
-          <ModalSuccess variant="registro" openModal={openModal} setOpenModal={setOpenModal} />
+          <Button type="submit">Finalizar cadastro</Button>
         </Form>
       </Container>
       <Footer />
+      {openModalSucces && (
+        <ModalSuccess
+          variant="registro"
+          openModal={openModalSucces}
+          setOpenModal={setOpenModalSuccess}
+        />
+      )}
     </>
   );
 };
