@@ -1,6 +1,7 @@
-import { ReactNode } from "react";
-import { AuthProvider } from "./auth";
-import MenuProvider from "./menuContext";
+import { ReactNode } from 'react';
+import { AnnouncementProvider } from './announcement';
+import { AuthProvider } from './auth';
+import MenuProvider from './menuContext';
 
 interface ProvidersProps {
   children: ReactNode;
@@ -9,7 +10,9 @@ interface ProvidersProps {
 export const Providers = ({ children }: ProvidersProps) => {
   return (
     <AuthProvider>
-      <MenuProvider>{children}</MenuProvider>
+      <AnnouncementProvider>
+        <MenuProvider>{children}</MenuProvider>
+      </AnnouncementProvider>
     </AuthProvider>
   );
 };
