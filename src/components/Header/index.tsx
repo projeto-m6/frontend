@@ -15,7 +15,7 @@ export const Header = () => {
   return (
     <S.ContainerHeader>
       <div id="width">
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="" onClick={() => navigate('/', { replace: true })} />
 
         <S.MenuWithoutUser>
           <BiMenu />

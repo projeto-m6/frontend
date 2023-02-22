@@ -32,6 +32,10 @@ export const ContainerHeader = styled.div`
     width: 90%;
   }
 
+  #width img {
+    cursor: pointer;
+  }
+
   & > img {
     width: 156px;
     height: 26px;
