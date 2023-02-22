@@ -19,15 +19,12 @@ export const MyAds = () => {
       <Header />
       <Standart>
         <InfoAdvertiser>
-          <Avatar username="Rodrigo Nunes" variant="big" />
+          <Avatar username={user?.name || ''} variant="big" />
           <div>
-            <H6600>Rodrigo Nunes</H6600>
+            <H6600>{user?.name}</H6600>
             <span>Anunciante</span>
           </div>
-          <Description>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-            has been the industry's standard dummy text ever since the 1500s
-          </Description>
+          <Description>{user?.description}</Description>
           <ModalCreateAnnouncement setOpenModalSuccess={setOpenModalSuccess} />
         </InfoAdvertiser>
       </Standart>
