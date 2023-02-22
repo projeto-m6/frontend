@@ -15,7 +15,7 @@ interface InputProps<T extends FieldValues> extends InputHTMLAttributes<HTMLInpu
   name: Path<T>;
   rules?: RegisterOptions;
   register: UseFormRegister<T>;
-  errors?: Partial<DeepMap<T, FieldError>>;
+  errors?: FieldError;
 }
 
 export const Input = <T extends Record<string, any>>({
@@ -27,10 +27,10 @@ export const Input = <T extends Record<string, any>>({
   ...rest
 }: InputProps<T>) => {
   return (
-    <Container error={!!(errors && errors[name])}>
+    <Container error={!!errors}>
       <Label>{label}</Label>
       <input {...register(name, rules)} {...rest} />
-      {errors && errors[name] && <ErrorMessage>{errors[name].message}</ErrorMessage>}
+      {errors && <ErrorMessage>{errors.message}</ErrorMessage>}
     </Container>
   );
 };
