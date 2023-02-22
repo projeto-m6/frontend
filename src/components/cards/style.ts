@@ -19,10 +19,24 @@ export const Image = styled('div', {
     position: 'absolute',
     top: '10px',
     left: '15px',
-    backgroundColor: '$brand1',
     padding: '5px',
     color: '$white',
     fontFamily: 'Inter',
+  },
+
+  variants: {
+    is_published: {
+      true: {
+        span: {
+          backgroundColor: '$brand1',
+        },
+        false: {
+          span: {
+            backgroundColor: '$grey4',
+          },
+        },
+      },
+    },
   },
 });
 

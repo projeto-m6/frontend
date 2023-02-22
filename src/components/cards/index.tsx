@@ -27,9 +27,9 @@ const Card = ({
 
   return (
     <Container>
-      <Image>
+      <Image is_published={is_published}>
         <img src={images[0].image_url} alt="car" />
-        {isDashboard && <span>{is_sale ? 'Ativo' : 'Inativo'}</span>}
+        {isDashboard && <span>{is_published ? 'Ativo' : 'Inativo'}</span>}
       </Image>
       <Infos>
         <h2>{title}</h2>
