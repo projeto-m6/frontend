@@ -16,6 +16,7 @@ interface InputRadioProps<T extends FieldValues> {
   rules?: RegisterOptions;
   register: UseFormRegister<T>;
   errors?: Partial<DeepMap<T, FieldError>>;
+  onClick?: () => void;
 }
 
 export const InputRadio = <T extends Record<string, any>>({
@@ -26,9 +27,10 @@ export const InputRadio = <T extends Record<string, any>>({
   register,
   rules = {},
   errors,
+  onClick,
 }: InputRadioProps<T>) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <input id={id} type="radio" {...register(name, rules)} value={value} />
       <label htmlFor={id}>{label}</label>
     </Container>
