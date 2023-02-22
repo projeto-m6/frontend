@@ -1,4 +1,3 @@
-import { IAnnouncement } from '../../mocks/auto-vehicles';
 import {
   AuctionArticle,
   AuctionTime,
@@ -10,16 +9,17 @@ import {
 import { BsClock, BsArrowRight } from 'react-icons/bs';
 import { Avatar } from '../Avatar';
 import { B1400, B2500, H6600, H7500 } from '../../styles/typography';
+import { Announcement } from '../../contexts/announcement';
 
 interface IAuctionCardsProps {
-  announcement: IAnnouncement;
+  announcement: Announcement;
 }
 
 export const AuctionCards = ({ announcement }: IAuctionCardsProps) => {
   return (
     <AuctionArticle>
       <AuctionImage>
-        <img src={announcement.image[0]} alt="car" />
+        <img src={announcement.images[0].image_url} alt="car" />
         <AuctionText>
           <AuctionTime>
             <BsClock />
@@ -37,9 +37,14 @@ export const AuctionCards = ({ announcement }: IAuctionCardsProps) => {
           <div className="price">
             <div>
               <p>{announcement.year}</p>
-              <p>{announcement.mileage}</p>
+              <p>{announcement.mileage} km</p>
             </div>
-            <H7500>{announcement.price}</H7500>
+            <H7500>
+              {Number(announcement.price).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
+            </H7500>
           </div>
         </AuctionText>
       </AuctionImage>

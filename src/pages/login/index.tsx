@@ -36,7 +36,7 @@ export const Login = () => {
               placeholder="email"
               name="email"
               register={register}
-              errors={errors}
+              errors={errors.email}
             />
             <Input
               label="Password"
@@ -44,7 +44,7 @@ export const Login = () => {
               type="password"
               placeholder="senha"
               register={register}
-              errors={errors}
+              errors={errors.password}
             />
 
             <button type="submit">Entrar</button>

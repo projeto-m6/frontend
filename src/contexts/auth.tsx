@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useEffect, useState, Dispatch, SetStateAction } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import { Announcement } from './announcement';
 
 interface Address {
   cep: string;
@@ -27,33 +28,6 @@ export interface ILoginRequest {
   email: string;
   password: string;
 }
-
-export interface Comment {
-  id: string;
-  comment: string;
-}
-
-export interface Image {
-  id: string;
-  image_url: string;
-}
-
-export interface Announcement {
-  id: string;
-  is_sale: boolean;
-  title: string;
-  year: string;
-  mileage: string;
-  price: string;
-  description: string;
-  is_car: boolean;
-  is_published: boolean;
-  comments: Comment[];
-  images: Image[];
-}
-
-// type IUser = Omit<ISignInRequest, 'password' | 'address'> & { announcements: Announcement[] };
-
 export interface IUser extends Omit<ISignInRequest, 'password' | 'address'> {
   id: string;
   address: Address & { id: string };
@@ -66,6 +40,8 @@ interface AuthContextData {
   login: (data: ILoginRequest) => Promise<void>;
   signIn: (data: ISignInRequest) => Promise<boolean>;
   signOut: () => void;
+  reload: boolean;
+  setReload: Dispatch<SetStateAction<boolean>>;
 }
 
 export const AuthContext = createContext({} as AuthContextData);
@@ -76,7 +52,9 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState<IUser | null>(null);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('@motors:token');
@@ -86,13 +64,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         .get('/profile')
         .then((response) => {
           setUser(response.data);
-          navigate('/', { replace: true });
+          if (location.pathname == '/login' || location.pathname == '/register') {
+            navigate(-1);
+          } else {
+            navigate(location.pathname, { replace: true });
+          }
         })
         .catch((error) => {
           signOut();
         });
     }
-  }, []);
+  }, [reload]);
 
   const login = async (data: ILoginRequest) => {
     try {
@@ -113,7 +95,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signIn = async (data: ISignInRequest) => {
     try {
       const resp = await api.post('/users', data);
-      console.log(resp);
       return true;
     } catch (error) {
       console.error(error);
@@ -128,7 +109,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ login, user, setUser, signIn, signOut }}>
+    <AuthContext.Provider value={{ login, user, setUser, signIn, signOut, reload, setReload }}>
       {children}
     </AuthContext.Provider>
   );

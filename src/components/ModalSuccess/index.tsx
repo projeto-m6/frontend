@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { Button } from '../../pages/register/styles';
 import Modal from '@mui/material/Modal';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { B1400, H7500 } from '../../styles/typography';
 import { Container } from './styles';
 import { useNavigate } from 'react-router-dom';
@@ -35,12 +35,11 @@ export const ModalSuccess = ({ variant, openModal, setOpenModal }: ModalSuccessP
 
   return (
     <div>
-      <Button type="submit">
-        {variant == 'registro' ? 'Finalizar Cadastro' : 'Criar anúncio'}
-      </Button>
       <Modal
         open={openModal}
-        onClose={() => setOpenModal(false)}
+        onClose={() => {
+          setOpenModal(false);
+        }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -48,7 +47,13 @@ export const ModalSuccess = ({ variant, openModal, setOpenModal }: ModalSuccessP
           <Container>
             <header>
               <H7500>Sucesso</H7500>
-              <span onClick={() => setOpenModal(false)}>X</span>
+              <span
+                onClick={() => {
+                  setOpenModal(false);
+                }}
+              >
+                X
+              </span>
             </header>
             <main>
               <H7500>
