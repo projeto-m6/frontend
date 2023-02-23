@@ -4,6 +4,7 @@ import { Login } from '../pages/login';
 import { MyAds } from '../pages/myAds';
 import { ProductDetail } from '../pages/productDetail';
 import { Register } from '../pages/register';
+import { UserProfile } from '../pages/userProfile';
 
 export const MainRoutes = () => {
   return (
@@ -12,6 +13,8 @@ export const MainRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/myAds" element={<MyAds />} />
       <Route path="/product/:id" element={<ProductDetail />} />
+      <Route path="/userProfile/:id" element={<UserProfile />} />
+
       <Route path="/" element={<Dashboard />} />
       <Route path="*" element={<Navigate replace to="/login" />} />
     </Routes>
