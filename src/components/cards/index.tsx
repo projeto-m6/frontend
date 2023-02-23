@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Announcement } from '../../contexts/announcement';
 import { AuthContext } from '../../contexts/auth';
 import { Avatar } from '../Avatar';
@@ -15,17 +15,21 @@ const Card = ({ announcement }: CardProps) => {
   const { user } = useContext(AuthContext);
   const [openModalDelete, setOpenModalDelete] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const hasPermitionEdit =
     location.pathname === '/myAds' && user && announcement.user.id === user.id;
 
   return (
     <Container>
-      <Image is_published={announcement.is_published}>
+      <Image
+        onClick={() => navigate('/product', { state: announcement })}
+        is_published={announcement.is_published}
+      >
         <img src={announcement.images[0].image_url} />
         {hasPermitionEdit && <span>{announcement.is_published ? 'Ativo' : 'Inativo'}</span>}
       </Image>
-      <Infos>
+      <Infos onClick={() => navigate('/product', { state: announcement })}>
         <h2>{announcement.title}</h2>
         <p>
           {announcement.description.length > 81
@@ -37,7 +41,7 @@ const Card = ({ announcement }: CardProps) => {
           <p id="advertiser">{announcement.user.name}</p>
         </div>
       </Infos>
-      <Details>
+      <Details onClick={() => navigate('/product', { state: announcement })}>
         <div>
           <span id="mileage">{announcement.mileage} KM</span>
           <span id="year">{announcement.year}</span>

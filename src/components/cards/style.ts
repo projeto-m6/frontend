@@ -18,6 +18,7 @@ export const Container = styled('div', {
     backgroundColor: 'transparent',
     cursor: 'pointer',
   },
+  cursor: 'pointer',
 });
 
 export const Image = styled('div', {
