@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Avatar } from '../../components/Avatar';
 import { Comments } from '../../components/Comments';
 import Footer from '../../components/footer';
@@ -22,6 +22,7 @@ import { Announcement } from '../../contexts/announcement';
 export const ProductDetail = () => {
   const { id } = useParams();
   const [announcement, setAnnoucement] = useState<Announcement | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -78,7 +79,9 @@ export const ProductDetail = () => {
               <Avatar username={announcement?.user.name || ''} variant="big" />
               <H6600>{announcement?.user.name}</H6600>
               <B1400>{announcement?.user.description}</B1400>
-              <button>Ver todos anuncios</button>
+              <button onClick={() => navigate(`/userProfile/${announcement?.user.id}`)}>
+                Ver todos anuncios
+              </button>
             </AdvertiserInfo>
           </Aside>
         </Main>
