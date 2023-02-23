@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { Avatar } from '../../components/Avatar';
 import { Comments } from '../../components/Comments';
 import Footer from '../../components/footer';
@@ -13,7 +14,23 @@ import {
   VehicleInfo,
 } from './styles';
 
+import car from '../../assets/car.png';
+import { useEffect, useState } from 'react';
+import api from '../../services/api';
+import { Announcement } from '../../contexts/announcement';
+
 export const ProductDetail = () => {
+  const { id } = useParams();
+  const [announcement, setAnnoucement] = useState<Announcement | null>(null);
+
+  useEffect(() => {
+    if (id) {
+      api.get(`/announcements/${id}`).then((resp) => {
+        setAnnoucement(resp.data);
+      });
+    }
+  }, []);
+
   return (
     <>
       <Header />
@@ -21,27 +38,28 @@ export const ProductDetail = () => {
         <Main>
           <div>
             <div className="corverImg">
-              <img src="EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png" alt="" />
+              <img src={announcement?.images[0].image_url} alt="" />
             </div>
             <VehicleInfo>
-              <H6600>Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 </H6600>
+              <H6600>{announcement?.title}</H6600>
               <div>
                 <div className="spanGroup">
-                  <span>2012</span>
-                  <span>0 KM</span>
+                  <span>{announcement?.year}</span>
+                  <span>{announcement?.mileage} KM</span>
                 </div>
-                <H7500>R$ 00.000,00</H7500>
+                <H7500>
+                  {Number(announcement?.price).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })}
+                </H7500>
               </div>
 
               <button>comprar</button>
             </VehicleInfo>
             <VehicleDescription>
               <H6600>Descrição</H6600>
-              <B1400>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a type specimen book.
-              </B1400>
+              <B1400>{announcement?.description}</B1400>
             </VehicleDescription>
             <Comments />
           </div>
@@ -49,63 +67,17 @@ export const ProductDetail = () => {
             <Gallery>
               <H6600>Fotos</H6600>
               <ul>
-                <li>
-                  <img
-                    src="EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png"
-                    alt=""
-                  />
-                </li>
-                <li>
-                  <img
-                    src="EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png"
-                    alt=""
-                  />
-                </li>
-                <li>
-                  <img
-                    src="EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png"
-                    alt=""
-                  />
-                </li>
-                <li>
-                  <img
-                    src="EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png"
-                    alt=""
-                  />
-                </li>
-                <li>
-                  <img
-                    src="EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png"
-                    alt=""
-                  />
-                </li>
-                <li>
-                  <img
-                    src="EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png"
-                    alt=""
-                  />
-                </li>
-                <li>
-                  <img
-                    src="EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png"
-                    alt=""
-                  />
-                </li>
-                <li>
-                  <img
-                    src="EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png"
-                    alt=""
-                  />
-                </li>
+                {announcement?.images.map((image) => (
+                  <li key={image.id}>
+                    <img src={image.image_url} alt="" />
+                  </li>
+                ))}
               </ul>
             </Gallery>
             <AdvertiserInfo>
-              <Avatar username="Rodigo Nunes" variant="big" />
-              <H6600>Rodrigo Nunes</H6600>
-              <B1400>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industry's
-              </B1400>
+              <Avatar username={announcement?.user.name || ''} variant="big" />
+              <H6600>{announcement?.user.name}</H6600>
+              <B1400>{announcement?.user.description}</B1400>
               <button>Ver todos anuncios</button>
             </AdvertiserInfo>
           </Aside>

@@ -35,6 +35,12 @@ export const Main = styled.main`
   .corverImg {
     background-color: ${({ theme }) => theme.grey10};
     text-align: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   @media (min-width: 764px) {
@@ -137,6 +143,8 @@ export const Gallery = styled.div`
 
       img {
         width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   }
