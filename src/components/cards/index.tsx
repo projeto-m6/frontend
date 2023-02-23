@@ -23,13 +23,13 @@ const Card = ({ announcement }: CardProps) => {
   return (
     <Container>
       <Image
-        onClick={() => navigate('/product', { state: announcement })}
+        onClick={() => navigate(`/product/${announcement.id}`)}
         is_published={announcement.is_published}
       >
         <img src={announcement.images[0].image_url} />
         {hasPermitionEdit && <span>{announcement.is_published ? 'Ativo' : 'Inativo'}</span>}
       </Image>
-      <Infos onClick={() => navigate('/product', { state: announcement })}>
+      <Infos onClick={() => navigate(`/product/${announcement.id}`)}>
         <h2>{announcement.title}</h2>
         <p>
           {announcement.description.length > 81
@@ -41,7 +41,7 @@ const Card = ({ announcement }: CardProps) => {
           <p id="advertiser">{announcement.user.name}</p>
         </div>
       </Infos>
-      <Details onClick={() => navigate('/product', { state: announcement })}>
+      <Details onClick={() => navigate(`/product/${announcement.id}`)}>
         <div>
           <span id="mileage">{announcement.mileage} KM</span>
           <span id="year">{announcement.year}</span>
