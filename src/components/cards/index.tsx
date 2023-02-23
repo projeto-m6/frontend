@@ -27,7 +27,9 @@ const Card = ({ announcement }: CardProps) => {
         is_published={announcement.is_published}
       >
         <img src={announcement.images[0].image_url} />
-        {hasPermitionEdit && <span>{announcement.is_published ? 'Ativo' : 'Inativo'}</span>}
+        {(location.pathname.includes('/userProfile') || hasPermitionEdit) && (
+          <span>{announcement.is_published ? 'Ativo' : 'Inativo'}</span>
+        )}
       </Image>
       <Infos onClick={() => navigate(`/product/${announcement.id}`)}>
         <h2>{announcement.title}</h2>
