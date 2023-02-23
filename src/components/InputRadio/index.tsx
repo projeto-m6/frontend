@@ -33,11 +33,13 @@ export const InputRadio = <T extends Record<string, any>>({
 }: InputRadioProps<T>) => {
   return (
     <Container onClick={onClick}>
-      {checked === true ? (
-        <input id={id} type="radio" defaultChecked {...register(name, rules)} value={value} />
-      ) : (
-        <input id={id} type="radio" {...register(name, rules)} value={value} />
-      )}
+      <input
+        id={id}
+        type="radio"
+        defaultChecked={!!checked}
+        {...register(name, rules)}
+        value={value}
+      />
       <label htmlFor={id}>{label}</label>
     </Container>
   );
