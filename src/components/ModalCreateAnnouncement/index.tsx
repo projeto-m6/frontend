@@ -73,6 +73,7 @@ export const ModalCreateAnnouncement = ({ setOpenModalSuccess }: ModalCreateAnno
                 value="true"
                 onClick={() => setIsAuction(false)}
                 register={register}
+                checked={true}
               />
               <InputRadio
                 id="leilao"
@@ -131,7 +132,14 @@ export const ModalCreateAnnouncement = ({ setOpenModalSuccess }: ModalCreateAnno
 
             <B2500>Tipo de veículo</B2500>
             <div className="flex">
-              <InputRadio id="carro" label="Carro" name="is_car" value="true" register={register} />
+              <InputRadio
+                id="carro"
+                label="Carro"
+                name="is_car"
+                value="true"
+                register={register}
+                checked={true}
+              />
               <InputRadio id="moto" label="Moto" name="is_car" value="false" register={register} />
             </div>
             {errors.is_sale && <ErrorMessage>Escolha uma das opções acima</ErrorMessage>}

@@ -14,6 +14,7 @@ export const createAnnouncementSchema = yup.object().shape({
     .max(8, 'O preço não pode ter mais que 8 dígitos'),
   description: yup.string().required('Descrição obrigatória'),
   is_car: yup.boolean().required('Tipo de veículo obrigatório'),
+  is_published: yup.boolean(),
   images: yup.array().of(
     yup.object().shape({
       image_url: yup
