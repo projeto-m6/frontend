@@ -30,7 +30,7 @@ export const ShowCase = ({ listAnnouncements }: ShowCaseProps) => {
           {listAnnouncements.length > 0 &&
             listAnnouncements.map((announcement, index) => {
               if (announcement.is_car) {
-                return <Card key={index} {...announcement} />;
+                return <Card key={index} announcement={announcement} />;
               }
             })}
         </div>
@@ -43,7 +43,7 @@ export const ShowCase = ({ listAnnouncements }: ShowCaseProps) => {
           {listAnnouncements.length > 0 &&
             listAnnouncements.map((announcement, index) => {
               if (!announcement.is_car) {
-                return <Card key={index} {...announcement} />;
+                return <Card key={index} announcement={announcement} />;
               }
             })}
         </div>
