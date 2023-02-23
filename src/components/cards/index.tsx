@@ -1,53 +1,70 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Announcement } from '../../contexts/announcement';
+import { AuthContext } from '../../contexts/auth';
 import { Avatar } from '../Avatar';
+import { ModalDeleteAnnouncement } from '../ModalDeleteAnnouncement';
+import { ModalEditAnnouncement } from '../ModalEditAnnouncement';
 import { Container, Details, Image, Infos } from './style';
 
-const Card = ({
-  id,
-  description,
-  is_car,
-  title,
-  images,
-  is_sale,
-  user,
-  year,
-  price,
-  mileage,
-  is_published,
-}: Announcement) => {
-  const [isDashboard, setIsDashboard] = useState<boolean>(true);
+interface CardProps {
+  announcement: Announcement;
+}
 
-  useEffect(() => {
-    let url_atual = window.location.href;
-    if (url_atual == 'http://localhost:5173/') {
-      setIsDashboard(false);
-    }
-  }, []);
+const Card = ({ announcement }: CardProps) => {
+  const { user } = useContext(AuthContext);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+  const location = useLocation();
+
+  const hasPermitionEdit =
+    location.pathname === '/myAds' && user && announcement.user.id === user.id;
 
   return (
     <Container>
-      <Image is_published={is_published}>
-        <img src={images[0].image_url} alt="car" />
-        {isDashboard && <span>{is_published ? 'Ativo' : 'Inativo'}</span>}
+      <Image is_published={announcement.is_published}>
+        <img src={announcement.images[0].image_url} />
+        {hasPermitionEdit && <span>{announcement.is_published ? 'Ativo' : 'Inativo'}</span>}
       </Image>
       <Infos>
-        <h2>{title}</h2>
-        <p>{description.length > 81 ? description.slice(0, 80) + '...' : description}</p>
+        <h2>{announcement.title}</h2>
+        <p>
+          {announcement.description.length > 81
+            ? announcement.description.slice(0, 80) + '...'
+            : announcement.description}
+        </p>
         <div>
-          <Avatar username={user.name} />
-          <p id="advertiser">{user.name}</p>
+          <Avatar username={announcement.user.name} />
+          <p id="advertiser">{announcement.user.name}</p>
         </div>
       </Infos>
       <Details>
         <div>
-          <span id="mileage">{mileage} KM</span>
-          <span id="year">{year}</span>
+          <span id="mileage">{announcement.mileage} KM</span>
+          <span id="year">{announcement.year}</span>
         </div>
         <span id="price">
-          {Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+          {Number(announcement.price).toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          })}
         </span>
       </Details>
+      {hasPermitionEdit && (
+        <div className="groupButton">
+          <ModalEditAnnouncement
+            announcement={announcement}
+            setOpenModalDelete={setOpenModalDelete}
+          />
+          <button>Ver como</button>
+        </div>
+      )}
+      {openModalDelete && (
+        <ModalDeleteAnnouncement
+          openModal={openModalDelete}
+          setOpenModal={setOpenModalDelete}
+          id={announcement.id}
+        />
+      )}
     </Container>
   );
 };

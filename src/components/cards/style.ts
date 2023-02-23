@@ -5,6 +5,19 @@ export const Container = styled('div', {
   flexDirection: 'column',
   gap: '1rem',
   minWidth: '312px',
+
+  '& .groupButton': {
+    display: 'flex',
+    gap: '10px',
+  },
+
+  '& .groupButton button': {
+    padding: '0.25rem 0.5rem',
+    border: '1.5px solid $grey1',
+    borderRadius: '0.25rem',
+    backgroundColor: 'transparent',
+    cursor: 'pointer',
+  },
 });
 
 export const Image = styled('div', {
@@ -22,6 +35,7 @@ export const Image = styled('div', {
     padding: '5px',
     color: '$white',
     fontFamily: 'Inter',
+    backgroundColor: '$grey4',
   },
 
   variants: {
@@ -29,11 +43,6 @@ export const Image = styled('div', {
       true: {
         span: {
           backgroundColor: '$brand1',
-        },
-        false: {
-          span: {
-            backgroundColor: '$grey4',
-          },
         },
       },
     },
