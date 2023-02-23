@@ -156,6 +156,7 @@ export const Register = () => {
               label="Comprador"
               name="is_buyer"
               value="true"
+              checked={true}
               register={register}
             />
             <InputRadio
