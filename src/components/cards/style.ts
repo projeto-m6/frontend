@@ -5,6 +5,7 @@ export const Container = styled('div', {
   flexDirection: 'column',
   gap: '1rem',
   minWidth: '312px',
+  maxWidth: '312px',
 
   '& .groupButton': {
     display: 'flex',
