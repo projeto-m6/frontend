@@ -48,6 +48,8 @@ export const Main = styled.main`
     gap: 2.875rem;
 
     & > div {
+      min-width: 55%;
+
       div:last-child {
         display: flex;
       }

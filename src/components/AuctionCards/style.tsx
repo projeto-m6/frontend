@@ -8,10 +8,13 @@ export const AuctionArticle = styled.article`
   max-width: 45.9375rem;
   border-radius: 0.3125rem;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const AuctionImage = styled.section`
   position: relative;
+  flex: 1;
   img {
     position: absolute;
     top: 0;
