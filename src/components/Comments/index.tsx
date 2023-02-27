@@ -1,6 +1,7 @@
 import { Announcement } from '../../contexts/announcement';
 import { B2400, B2500, H6600 } from '../../styles/typography';
 import { Avatar } from '../Avatar';
+import { WriteComment } from '../WriteComment';
 import { Container } from './styles';
 
 interface CommentsProps {
@@ -45,19 +46,21 @@ export const Comments = ({ announcement }: CommentsProps) => {
       <div className="comments">
         <H6600>Comentários</H6600>
         <ul>
-          {announcement &&
-            announcement.comments.map((comment) => (
-              <li key={comment.id}>
-                <div>
-                  <Avatar username={comment.user.name} />
-                  <B2500>{comment.user.name}</B2500>
-                  <span className="time">{publishingTime(comment.created_at)}</span>
-                </div>
-                <B2400>{comment.comment}</B2400>
-              </li>
-            ))}
+          {announcement && announcement.comments.length > 0
+            ? announcement.comments.map((comment) => (
+                <li key={comment.id}>
+                  <div>
+                    <Avatar username={comment.user.name} />
+                    <B2500>{comment.user.name}</B2500>
+                    <span className="time">{publishingTime(comment.created_at)}</span>
+                  </div>
+                  <B2400>{comment.comment}</B2400>
+                </li>
+              ))
+            : 'Seja o primeiro a comentar'}
         </ul>
       </div>
+      <WriteComment />
     </Container>
   );
 };
