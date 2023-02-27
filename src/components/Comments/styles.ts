@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 33px;
   .comments {
     background-color: ${({ theme }) => theme.grey10};
     padding: 2.25rem 2.75rem;
