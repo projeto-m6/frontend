@@ -14,7 +14,6 @@ import {
   VehicleInfo,
 } from './styles';
 
-import car from '../../assets/car.png';
 import { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { Announcement } from '../../contexts/announcement';
@@ -62,7 +61,7 @@ export const ProductDetail = () => {
               <H6600>Descrição</H6600>
               <B1400>{announcement?.description}</B1400>
             </VehicleDescription>
-            <Comments />
+            <Comments announcement={announcement} />
           </div>
           <Aside>
             <Gallery>
@@ -85,7 +84,7 @@ export const ProductDetail = () => {
             </AdvertiserInfo>
           </Aside>
         </Main>
-        <Comments />
+        <Comments announcement={announcement} />
       </Container>
       <Footer />
     </>
