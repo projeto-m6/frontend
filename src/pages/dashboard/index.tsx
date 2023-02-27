@@ -4,6 +4,7 @@ import Footer from '../../components/footer';
 import { Header } from '../../components/Header';
 import { ShowCase } from '../../components/ShowCase';
 import { Standard } from '../../components/Standard';
+import { WriteComment } from '../../components/WriteComment';
 import { AnnouncementContext } from '../../contexts/announcement';
 import listAnnouncements from '../../mocks/auto-vehicles';
 
