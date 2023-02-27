@@ -13,6 +13,8 @@ import { AuthContext, IUser } from './auth';
 export interface Comment {
   id: string;
   comment: string;
+  user: IUser;
+  created_at: string;
 }
 
 export interface Image {
