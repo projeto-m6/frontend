@@ -14,13 +14,15 @@ import {
   VehicleInfo,
 } from './styles';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import api from '../../services/api';
 import { Announcement } from '../../contexts/announcement';
+import { AuthContext } from '../../contexts/auth';
 
 export const ProductDetail = () => {
   const { id } = useParams();
   const [announcement, setAnnoucement] = useState<Announcement | null>(null);
+  const { reload } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export const ProductDetail = () => {
         setAnnoucement(resp.data);
       });
     }
-  }, []);
+  }, [reload]);
 
   return (
     <>
