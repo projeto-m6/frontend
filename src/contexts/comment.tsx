@@ -10,7 +10,7 @@ interface CommentContextData {
   createComment: (data: ICommentRequest, announcementId: string) => Promise<void>;
 }
 
-const CommentContext = createContext({} as CommentContextData);
+export const CommentContext = createContext({} as CommentContextData);
 
 interface CommentProviderProps {
   children: ReactNode;
