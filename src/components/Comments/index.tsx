@@ -9,11 +9,11 @@ interface CommentsProps {
 }
 
 export const Comments = ({ announcement }: CommentsProps) => {
-  function monthDiff(dateFrom: Date, dateTo: Date) {
+  const monthDiff = (dateFrom: Date, dateTo: Date) => {
     return (
       dateTo.getMonth() - dateFrom.getMonth() + 12 * (dateTo.getFullYear() - dateFrom.getFullYear())
     );
-  }
+  };
 
   const publishingTime = (date: string) => {
     const now = new Date();
@@ -60,7 +60,7 @@ export const Comments = ({ announcement }: CommentsProps) => {
             : 'Seja o primeiro a comentar'}
         </ul>
       </div>
-      <WriteComment />
+      <WriteComment announcementId={announcement?.id} />
     </Container>
   );
 };

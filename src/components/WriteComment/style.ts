@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+interface FormProps {
+  user: boolean;
+  errors: boolean;
+}
+
 export const StyledContainer = styled.section`
   max-width: 761px;
   background-color: white;
@@ -11,7 +16,7 @@ export const StyledContainer = styled.section`
     align-items: center;
   }
 `;
-export const StyledTextDiv = styled.div`
+export const StyledTextDiv = styled.form<FormProps>`
   background-color: aliceblue;
   margin: 1rem 0;
   position: relative;
@@ -20,7 +25,7 @@ export const StyledTextDiv = styled.div`
   textarea {
     resize: none;
     padding: 10px 70px 0px 30px;
-    border: 1.5px solid #e9ecef;
+    border: 1.5px solid ${({ theme, errors }) => (errors ? theme.alert1 : theme.grey7)};
     outline: none;
     font-size: 1rem;
     width: 100%;
@@ -33,7 +38,7 @@ export const StyledTextDiv = styled.div`
   }
 
   textarea:focus {
-    border: 1.5px solid #6100ff;
+    border: 1.5px solid ${({ theme, errors }) => (errors ? theme.alert1 : theme.brand1)};
   }
 
   button {
@@ -41,7 +46,7 @@ export const StyledTextDiv = styled.div`
     position: absolute;
     bottom: 10px;
     right: 30px;
-    background-color: #4529e6;
+    background-color: ${({ theme, user }) => (user ? theme.brand1 : theme.grey5)};
     color: white;
     font-family: 'Inter';
     border-radius: 4px;
