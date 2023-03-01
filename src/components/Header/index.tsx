@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../contexts/auth';
 import { Avatar } from '../Avatar';
 import { useNavigate } from 'react-router-dom';
+import { ModalEditProfile } from '../ModalEditProfile';
 
 export const Header = () => {
   const { user, signOut } = useContext(AuthContext);
@@ -27,7 +28,7 @@ export const Header = () => {
 
               {user ? (
                 <>
-                  <li>Editar Perfil</li>
+                  <ModalEditProfile />
                   <li>Editar Endereço</li>
                   {!user.is_buyer && (
                     <li onClick={() => navigate('/myAds', { replace: true })}>Meus Anúncios</li>
@@ -55,7 +56,7 @@ export const Header = () => {
               <span>{user.name}</span>
               <div>
                 <ul>
-                  <li>Editar Perfil</li>
+                  <ModalEditProfile />
                   <li>Editar Endereço</li>
                   {!user.is_buyer && (
                     <li onClick={() => navigate('/myAds', { replace: true })}>Meus Anúncios</li>

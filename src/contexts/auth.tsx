@@ -3,6 +3,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { Announcement } from './announcement';
 
+export interface EditProfile {
+  name: string;
+  email: string;
+  cpf: string;
+  cell: string;
+  birthdate: string;
+  description: string;
+}
 interface Address {
   cep: string;
   state: string;
@@ -42,6 +50,7 @@ interface AuthContextData {
   signOut: () => void;
   reload: boolean;
   setReload: Dispatch<SetStateAction<boolean>>;
+  editProfile: (data: EditProfile, userId: string) => Promise<void>;
 }
 
 export const AuthContext = createContext({} as AuthContextData);
@@ -108,8 +117,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     navigate('/login', { replace: true });
   };
 
+  const editProfile = async (data: EditProfile, userId: string) => {
+    try {
+      await api.patch(`/users/${userId}`, data);
+      setReload((prevValue) => !prevValue);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ login, user, setUser, signIn, signOut, reload, setReload }}>
+    <AuthContext.Provider
+      value={{ login, user, setUser, signIn, signOut, reload, setReload, editProfile }}
+    >
       {children}
     </AuthContext.Provider>
   );
