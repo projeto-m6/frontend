@@ -1,7 +1,15 @@
-import { ReactNode, createContext, useEffect, useState, Dispatch, SetStateAction } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import api from '../services/api';
-import { Announcement } from './announcement';
+import { AxiosResponse } from "axios";
+import {
+  ReactNode,
+  createContext,
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import api from "../services/api";
+import { Announcement } from "./announcement";
 
 export interface EditProfile {
   name: string;
@@ -36,10 +44,20 @@ export interface ILoginRequest {
   email: string;
   password: string;
 }
-export interface IUser extends Omit<ISignInRequest, 'password' | 'address'> {
+export interface IUser extends Omit<ISignInRequest, "password" | "address"> {
   id: string;
   address: Address & { id: string };
   announcements: Announcement[];
+}
+
+export interface IRequestReset {
+  email: string;
+}
+
+export interface IReset {
+  token: string;
+  password: string;
+  confirmPassword: string;
 }
 
 interface AuthContextData {
@@ -51,6 +69,12 @@ interface AuthContextData {
   reload: boolean;
   setReload: Dispatch<SetStateAction<boolean>>;
   editProfile: (data: EditProfile, userId: string) => Promise<void>;
+  request: (data: IRequestReset) => Promise<void>;
+  isRequest: boolean;
+  setIsRequest: Dispatch<SetStateAction<boolean>>;
+  reset: (data: IReset) => Promise<AxiosResponse<any, any> | undefined>;
+  isReset: boolean;
+  setIsReset: Dispatch<SetStateAction<boolean>>;
 }
 
 export const AuthContext = createContext({} as AuthContextData);
@@ -64,16 +88,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const location = useLocation();
   const [user, setUser] = useState<IUser | null>(null);
   const [reload, setReload] = useState(false);
+  const [isRequest, setIsRequest] = useState<boolean>(false);
+  const [isReset, setIsReset] = useState<boolean>(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('@motors:token');
+    const token = localStorage.getItem("@motors:token");
     if (token) {
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       api
-        .get('/profile')
+        .get("/profile")
         .then((response) => {
           setUser(response.data);
-          if (location.pathname == '/login' || location.pathname == '/register') {
+          if (
+            location.pathname == "/login" ||
+            location.pathname == "/register"
+          ) {
             navigate(-1);
           } else {
             navigate(location.pathname, { replace: true });
@@ -87,15 +116,48 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const login = async (data: ILoginRequest) => {
     try {
-      const resp = await api.post('/login', data);
+      const resp = await api.post("/login", data);
 
-      localStorage.setItem('@motors:token', resp.data.token);
+      localStorage.setItem("@motors:token", resp.data.token);
 
-      api.defaults.headers.common['Authorization'] = `Bearer ${resp.data.token}`;
+      api.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${resp.data.token}`;
 
       setUser(resp.data.user);
 
-      navigate('/', { replace: true });
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const request = async (data: IRequestReset) => {
+    try {
+      const resp = await api.post("/users/request-password", data);
+
+      setIsRequest(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const reset = async (data: IReset) => {
+    try {
+      if (data.password == data.confirmPassword) {
+        const token = data.token;
+        const resp = await api.post(
+          `/users/reset-password?token=${token}`,
+          data
+        );
+        setIsReset(true);
+
+        const timer = setTimeout(() => {
+          navigate("/login", { replace: true });
+        }, 5000);
+
+        return resp;
+      }
     } catch (error) {
       console.error(error);
     }
@@ -103,7 +165,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signIn = async (data: ISignInRequest) => {
     try {
-      const resp = await api.post('/users', data);
+      const resp = await api.post("/users", data);
       return true;
     } catch (error) {
       console.error(error);
@@ -114,7 +176,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signOut = () => {
     setUser(null);
     localStorage.clear();
-    navigate('/login', { replace: true });
+    navigate("/login", { replace: true });
   };
 
   const editProfile = async (data: EditProfile, userId: string) => {
@@ -128,7 +190,22 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ login, user, setUser, signIn, signOut, reload, setReload, editProfile }}
+      value={{
+        login,
+        user,
+        setUser,
+        signIn,
+        signOut,
+        reload,
+        setReload,
+        editProfile,
+        request,
+        isRequest,
+        setIsRequest,
+        reset,
+        isReset,
+        setIsReset,
+      }}
     >
       {children}
     </AuthContext.Provider>

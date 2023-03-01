@@ -18,6 +18,7 @@ export const Container = styled.footer`
   justify-content: center;
   height: 100%;
   width: 100%;
+  max-height: 200px;
   background-color: ${({ theme }) => theme.grey0};
 
   animation: ${dropUp} 1.5s forwards;

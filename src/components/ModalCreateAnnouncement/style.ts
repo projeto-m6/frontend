@@ -1,25 +1,25 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ModalStyle = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '90%',
-  height: '90%',
-  maxWidth: '32.5rem',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "90%",
+  height: "90%",
+  maxWidth: "32.5rem",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  overflow: 'scroll',
+  overflow: "scroll",
 };
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
-  background-color: '$grey10';
+  background-color: "$grey10";
   max-width: 25.6875rem;
   margin: 0 auto;
 
@@ -37,7 +37,7 @@ export const Form = styled.form`
 
       border-radius: 0.25rem;
       border: none;
-      font-family: 'Inter';
+      font-family: "Inter";
       font-size: 1rem;
       font-weight: 600;
       padding: 0.75rem 0.875rem;
@@ -63,7 +63,7 @@ export const Button = styled.button`
 
   border-radius: 0.25rem;
   border: none;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 0.875rem;
   font-weight: 600;
   padding: 0.75rem 0.875rem;
