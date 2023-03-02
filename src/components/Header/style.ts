@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 const dropDown = keyframes`
   0%{
@@ -23,7 +23,7 @@ export const ContainerHeader = styled.div`
   background-color: #ffffff;
 
   z-index: 1;
-  animation: ${dropDown} 0.7s forwards;
+  animation: ${dropDown} 1s forwards;
 
   #width {
     display: flex;
@@ -79,7 +79,7 @@ export const NavButtons = styled.div`
   gap: 20px;
 
   .login {
-    font-family: 'Inter';
+    font-family: "Inter";
     font-weight: 600;
     background: transparent;
     border: none;
@@ -128,7 +128,7 @@ export const MenuWithoutUser = styled.nav`
       flex-direction: column;
 
       li {
-        font-family: 'Inter';
+        font-family: "Inter";
         font-weight: 400;
         color: ${({ theme }) => theme.grey2};
         padding: 1rem 3.625rem 1rem 1.375rem;
@@ -155,7 +155,7 @@ export const MenuWithUser = styled.div`
   cursor: pointer;
 
   & span:last-child {
-    font-family: 'Inter';
+    font-family: "Inter";
     font-size: 1rem;
     font-weight: 400;
     color: ${({ theme }) => theme.grey2};
@@ -176,7 +176,7 @@ export const MenuWithUser = styled.div`
       flex-direction: column;
 
       li {
-        font-family: 'Inter';
+        font-family: "Inter";
         font-weight: 400;
         color: ${({ theme }) => theme.grey2};
         padding: 1rem 3.625rem 1rem 1.375rem;

@@ -21,7 +21,7 @@ export const Container = styled.footer`
   max-height: 200px;
   background-color: ${({ theme }) => theme.grey0};
 
-  animation: ${dropUp} 1.5s forwards;
+  animation: ${dropUp} 1s forwards;
 
   & > div {
     display: flex;
