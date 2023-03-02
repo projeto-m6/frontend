@@ -13,5 +13,7 @@ const load = keyframes`
 `;
 
 export const MainStyle = styled.main`
-  animation: ${load} 1.5s forwards;
+  animation: ${load} 1.2s forwards;
+  padding-bottom: 50px;
+  background-color: ${({ theme }) => theme.grey8};
 `;

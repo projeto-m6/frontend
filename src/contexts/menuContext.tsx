@@ -1,3 +1,4 @@
+import { Action } from "@remix-run/router";
 import { createContext, useEffect, useState } from "react";
 
 interface IChildrenContext {
@@ -10,6 +11,7 @@ interface IMenuContext {
   isOpenMenu: boolean;
   setIsOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
   HamburgerMenuStatus: () => void;
+  getCoordinates: (elem: string) => void;
 }
 
 export const MenuContext = createContext({} as IMenuContext);
@@ -24,6 +26,14 @@ const MenuProvider = ({ children }: IChildrenContext) => {
     } else {
       setIsHamburguerMenu(true);
     }
+  };
+
+  const getCoordinates = async (elem: string) => {
+    const redirect = document.getElementById(elem);
+
+    const coordinates = redirect!.getBoundingClientRect();
+
+    window.scrollTo({ top: coordinates.top, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -48,6 +58,7 @@ const MenuProvider = ({ children }: IChildrenContext) => {
         isOpenMenu,
         setIsOpenMenu,
         HamburgerMenuStatus,
+        getCoordinates,
       }}
     >
       {children}

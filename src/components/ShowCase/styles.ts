@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 export const ShowCaseStyled = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const ShowCaseStyled = styled.div`
     & > h2 {
       text-align: start;
       padding: 40px 0px;
-      font-family: 'Lexend';
+      font-family: "Lexend";
     }
   }
 `;

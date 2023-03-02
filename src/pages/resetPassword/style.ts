@@ -5,13 +5,14 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
+  background-color: ${({ theme }) => theme.grey8};
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
-  background-color: "$grey10";
+  background-color: ${({ theme }) => theme.white};
   max-width: 25.6875rem;
   margin: 0 auto;
   border: 1px solid ${({ theme }) => theme.grey5};

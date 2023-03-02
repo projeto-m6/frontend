@@ -4,7 +4,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   height: 100vh;
+  background-color: ${({ theme }) => theme.grey8};
 `;
 
 export const Form = styled.form`
@@ -17,6 +19,7 @@ export const Form = styled.form`
   border: 1px solid ${({ theme }) => theme.grey5};
   border-radius: 4px;
   padding: 50px;
+  background-color: ${({ theme }) => theme.white};
 
   & > h2 {
     font-family: "Lexend";
