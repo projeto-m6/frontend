@@ -7,6 +7,7 @@ import { AuthContext, EditProfile } from '../../contexts/auth';
 import { B2500, H7500 } from '../../styles/typography';
 import { cpfMask, phoneMask } from '../../utils/masks';
 import { Input } from '../Input';
+import { ModalDeleteProfile } from '../ModalDeleteProfile';
 import { Form } from './styles';
 
 const style = {
@@ -28,6 +29,8 @@ export const ModalEditProfile = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [openDeleteProfile, setOpenDeleteProfile] = useState(false);
 
   const { user, editProfile } = useContext(AuthContext);
 
@@ -126,12 +129,26 @@ export const ModalEditProfile = () => {
             />
 
             <div className="groupButton">
-              <button onClick={handleClose}>Cancelar</button>
+              <button
+                onClick={() => {
+                  handleClose();
+                  setOpenDeleteProfile(true);
+                }}
+              >
+                Excluir conta
+              </button>
               <button type="submit">Salvar Alterações</button>
             </div>
           </Form>
         </Box>
       </Modal>
+      {user && openDeleteProfile && (
+        <ModalDeleteProfile
+          openModal={openDeleteProfile}
+          setOpenModal={setOpenDeleteProfile}
+          id={user.id}
+        />
+      )}
     </>
   );
 };
