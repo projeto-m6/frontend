@@ -9,10 +9,16 @@ Página de Detalhes do Produto
 Página Inicial
 
 ## Tecnologias Utilizadas
-React
-TypeScript
-Vite
-Axios
+- React
+- TypeScript
+- Vite
+- Axios
+- styleComponents
+- HookForm
+- React-icons
+- React-router-dom
+- Yup
+- MUI
 
 ## Instalação
 Faça o clone do repositório para a sua máquina local
