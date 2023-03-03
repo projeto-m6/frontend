@@ -20,8 +20,15 @@ export const Header = () => {
     const register = document.location.href.indexOf("register");
     const request = document.location.href.indexOf("request");
     const reset = document.location.href.indexOf("reset");
+    const product = document.location.href.indexOf("product");
 
-    if (login != -1 || register != -1 || request != -1 || reset != -1) {
+    if (
+      login != -1 ||
+      register != -1 ||
+      request != -1 ||
+      reset != -1 ||
+      product != -1
+    ) {
       navigate("/", { replace: true });
       const myTimeout = setTimeout(() => {
         getCoordinates(elem);
@@ -99,7 +106,7 @@ export const Header = () => {
           {user ? (
             <S.MenuWithUser>
               <Avatar username={user.name} />
-              <span>{user.name}</span>
+              <span id="name">{user.name}</span>
               <div>
                 <ul>
                   <ModalEditProfile />
