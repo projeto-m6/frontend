@@ -5,7 +5,7 @@ export const Container = styled('div', {
   label: {
     display: 'block',
     textAlign: 'center',
-    padding: '1.5rem',
+    padding: '0.75rem',
     backgroundColor: '$white',
     cursor: 'pointer',
     border: '0.0938rem solid $grey4',

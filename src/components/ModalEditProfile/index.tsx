@@ -70,7 +70,7 @@ export const ModalEditProfile = () => {
         <Box sx={style}>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <header>
-              <H7500>Editar anúncio</H7500>
+              <H7500>Editar perfil</H7500>
               <span onClick={handleClose}>X</span>
             </header>
 
