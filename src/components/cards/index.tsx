@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Announcement } from '../../contexts/announcement';
-import { AuthContext } from '../../contexts/auth';
-import { Avatar } from '../Avatar';
-import { ModalDeleteAnnouncement } from '../ModalDeleteAnnouncement';
-import { ModalEditAnnouncement } from '../ModalEditAnnouncement';
-import { Container, Details, Image, Infos } from './style';
+import { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Announcement } from "../../contexts/announcement";
+import { AuthContext } from "../../contexts/auth";
+import { Avatar } from "../Avatar";
+import { ModalDeleteAnnouncement } from "../ModalDeleteAnnouncement";
+import { ModalEditAnnouncement } from "../ModalEditAnnouncement";
+import { Container, Details, Image, Infos } from "./style";
 
 interface CardProps {
   announcement: Announcement;
@@ -18,7 +18,7 @@ const Card = ({ announcement }: CardProps) => {
   const navigate = useNavigate();
 
   const hasPermitionEdit =
-    location.pathname === '/myAds' && user && announcement.user.id === user.id;
+    location.pathname === "/myAds" && user && announcement.user.id === user.id;
 
   return (
     <Container>
@@ -27,15 +27,15 @@ const Card = ({ announcement }: CardProps) => {
         is_published={announcement.is_published}
       >
         <img src={announcement.images[0].image_url} />
-        {(location.pathname.includes('/userProfile') || hasPermitionEdit) && (
-          <span>{announcement.is_published ? 'Ativo' : 'Inativo'}</span>
+        {(location.pathname.includes("/userProfile") || hasPermitionEdit) && (
+          <span>{announcement.is_published ? "Ativo" : "Inativo"}</span>
         )}
       </Image>
       <Infos onClick={() => navigate(`/product/${announcement.id}`)}>
         <h2>{announcement.title}</h2>
         <p>
           {announcement.description.length > 81
-            ? announcement.description.slice(0, 80) + '...'
+            ? announcement.description.slice(0, 80) + "..."
             : announcement.description}
         </p>
         <div>
@@ -49,9 +49,9 @@ const Card = ({ announcement }: CardProps) => {
           <span id="year">{announcement.year}</span>
         </div>
         <span id="price">
-          {Number(announcement.price).toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
+          {Number(announcement.price).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
           })}
         </span>
       </Details>
@@ -61,7 +61,9 @@ const Card = ({ announcement }: CardProps) => {
             announcement={announcement}
             setOpenModalDelete={setOpenModalDelete}
           />
-          <button>Ver como</button>
+          <button onClick={() => navigate(`/product/${announcement.id}`)}>
+            Ver como
+          </button>
         </div>
       )}
       {openModalDelete && (

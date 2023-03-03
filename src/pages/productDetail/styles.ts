@@ -1,12 +1,31 @@
-import styled from 'styled-components';
+import styled, { keyframes } from "styled-components";
+
+const load = keyframes`
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+`;
 
 export const Container = styled.div`
   min-height: 100vh;
-  background: linear-gradient(180deg, #4529e6 31.25%, #f1f3f5 31.26%, #f1f3f5 100%);
+  background: linear-gradient(
+    180deg,
+    #4529e6 31.25%,
+    #f1f3f5 31.26%,
+    #f1f3f5 100%
+  );
   padding: 2.8125rem 0.75rem;
   display: flex;
   flex-direction: column;
   gap: 1.125rem;
+
+  animation: ${load} 1.2s forwards;
 
   @media (min-width: 764px) {
     & > div {
@@ -80,7 +99,7 @@ export const VehicleInfo = styled.div`
       border-radius: 0.25rem;
 
       color: ${({ theme }) => theme.brand1};
-      font-family: 'Inter';
+      font-family: "Inter";
       font-size: 0.875rem;
       font-weight: 500;
     }
@@ -93,7 +112,7 @@ export const VehicleInfo = styled.div`
     border-radius: 4px;
 
     color: ${({ theme }) => theme.white};
-    font-family: 'Inter';
+    font-family: "Inter";
     font-size: 0.875rem;
     font-weight: 600;
 
@@ -168,7 +187,7 @@ export const AdvertiserInfo = styled.div`
     border-radius: 4px;
 
     color: ${({ theme }) => theme.white};
-    font-family: 'Inter';
+    font-family: "Inter";
     font-size: 1rem;
     font-weight: 600;
 
