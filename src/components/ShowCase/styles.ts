@@ -21,7 +21,7 @@ export const ShowCaseStyled = styled.div`
 
     /* Track */
     ::-webkit-scrollbar-track {
-      background: white;
+      background: none;
     }
 
     /* Handle */
@@ -36,6 +36,13 @@ export const ShowCaseStyled = styled.div`
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
       background: #555;
+    }
+
+    & > div {
+      & > p {
+        font-family: "inter";
+        font-size: 16px;
+      }
     }
 
     & > h2 {
