@@ -24,6 +24,11 @@ export const ShowCase = ({ listAnnouncements }: ShowCaseProps) => {
               listAnnouncements.map((announcement, index) => {
                 return <AuctionCards key={index} announcement={announcement} />;
               })}
+            {listAnnouncements.length == 0 && (
+              <div>
+                <p>Você ainda não criou nenhum anuncio nesta seção...</p>
+              </div>
+            )}
           </div>
         </ShowCaseStyled>
       )}
@@ -38,6 +43,11 @@ export const ShowCase = ({ listAnnouncements }: ShowCaseProps) => {
                 return <Card key={index} announcement={announcement} />;
               }
             })}
+          {listAnnouncements.length == 0 && (
+            <div>
+              <p>Você ainda não criou nenhum anuncio nesta seção...</p>
+            </div>
+          )}
         </div>
       </ShowCaseStyled>
       <ShowCaseStyled>
@@ -51,6 +61,11 @@ export const ShowCase = ({ listAnnouncements }: ShowCaseProps) => {
                 return <Card key={index} announcement={announcement} />;
               }
             })}
+          {listAnnouncements.length == 0 && (
+            <div>
+              <p>Você ainda não criou nenhum anuncio nesta seção...</p>
+            </div>
+          )}
         </div>
       </ShowCaseStyled>
     </>
