@@ -5,7 +5,6 @@ export const requestSchema = yup.object().shape({
 });
 
 export const resetSchema = yup.object().shape({
-  token: yup.string().required("Token Obrigatório"),
   password: yup.string().required("Senha obrigatória"),
   confirmPassword: yup.string().required("Senha obrigatória"),
 });
