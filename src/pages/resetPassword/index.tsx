@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import Footer from "../../components/footer";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
@@ -9,8 +10,18 @@ import { AuthContext, IReset } from "../../contexts/auth";
 import { resetSchema } from "../../validators/requestReset";
 import { Container, Form } from "./style";
 
-export const ResetPassword = () => {
-  const { reset, isReset } = useContext(AuthContext);
+export const ResetPassword = (props: any) => {
+  const { reset, isReset, setTokenReset } = useContext(AuthContext);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const token = searchParams.get("token");
+
+  useEffect(() => {
+    if (token) {
+      setTokenReset(token);
+    }
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -18,6 +29,7 @@ export const ResetPassword = () => {
   } = useForm<IReset>({
     resolver: yupResolver(resetSchema),
   });
+
   return (
     <Container>
       <Header />
@@ -31,14 +43,7 @@ export const ResetPassword = () => {
           <Form onSubmit={handleSubmit(reset)}>
             <h2>Redefinir senha</h2>
             <Input
-              label="Token"
-              placeholder="Cole o token"
-              name="token"
-              register={register}
-              errors={errors.token}
-            />
-            <Input
-              label="Senha"
+              label="Nova senha"
               placeholder="Digite a senha"
               name="password"
               register={register}
