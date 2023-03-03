@@ -154,7 +154,7 @@ export const MenuWithUser = styled.div`
   position: relative;
   cursor: pointer;
 
-  & span:last-child {
+  #name {
     font-family: "Inter";
     font-size: 1rem;
     font-weight: 400;
