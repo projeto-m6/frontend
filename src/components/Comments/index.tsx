@@ -1,14 +1,27 @@
-import { Announcement } from '../../contexts/announcement';
+import { useContext, useState } from 'react';
+import { Announcement, Comment } from '../../contexts/announcement';
+import { AuthContext } from '../../contexts/auth';
 import { B2400, B2500, H6600 } from '../../styles/typography';
 import { Avatar } from '../Avatar';
 import { WriteComment } from '../WriteComment';
 import { Container } from './styles';
+import { BsTrash, BsPencil } from 'react-icons/bs';
+import { ModalDeleteComment } from '../ModalDeleteComment';
+import { ModalEditComment } from '../ModalEditComment';
 
 interface CommentsProps {
   announcement: Announcement | null;
 }
 
 export const Comments = ({ announcement }: CommentsProps) => {
+  const { user } = useContext(AuthContext);
+
+  const [openModalEdit, setOpenModalEdit] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+
+  const [commentId, setCommentId] = useState('');
+  const [comment, setComment] = useState<Comment | null>(null);
+
   const monthDiff = (dateFrom: Date, dateTo: Date) => {
     return (
       dateTo.getMonth() - dateFrom.getMonth() + 12 * (dateTo.getFullYear() - dateFrom.getFullYear())
@@ -54,13 +67,49 @@ export const Comments = ({ announcement }: CommentsProps) => {
                     <B2500>{comment.user.name}</B2500>
                     <span className="time">{publishingTime(comment.created_at)}</span>
                   </div>
-                  <B2400>{comment.comment}</B2400>
+                  <div className="comment">
+                    <B2400>{comment.comment}</B2400>
+                    {user && comment.user.id == user.id && (
+                      <div className="buttonGroup">
+                        <button
+                          onClick={() => {
+                            setComment(comment);
+                            setOpenModalEdit(true);
+                          }}
+                        >
+                          <BsPencil size={16} />
+                        </button>
+                        <button
+                          onClick={() => {
+                            setCommentId(comment.id);
+                            setOpenModalDelete(true);
+                          }}
+                        >
+                          <BsTrash size={16} />
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </li>
               ))
             : 'Seja o primeiro a comentar'}
         </ul>
       </div>
       <WriteComment announcementId={announcement?.id} />
+      {openModalDelete && commentId && (
+        <ModalDeleteComment
+          openModal={openModalDelete}
+          setOpenModal={setOpenModalDelete}
+          id={commentId}
+        />
+      )}
+      {openModalEdit && comment && (
+        <ModalEditComment
+          openModal={openModalEdit}
+          setOpenModal={setOpenModalEdit}
+          comment={comment}
+        />
+      )}
     </Container>
   );
 };
