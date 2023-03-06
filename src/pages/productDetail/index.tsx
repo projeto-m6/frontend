@@ -1,9 +1,9 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { Avatar } from "../../components/Avatar";
-import { Comments } from "../../components/Comments";
-import Footer from "../../components/footer";
-import { Header } from "../../components/Header";
-import { B1400, H6600, H7500 } from "../../styles/typography";
+import { useNavigate, useParams } from 'react-router-dom';
+import { Avatar } from '../../components/Avatar';
+import { Comments } from '../../components/Comments';
+import Footer from '../../components/footer';
+import { Header } from '../../components/Header';
+import { B1400, H6600, H7500 } from '../../styles/typography';
 import {
   AdvertiserInfo,
   Aside,
@@ -12,12 +12,13 @@ import {
   Main,
   VehicleDescription,
   VehicleInfo,
-} from "./styles";
+} from './styles';
 
-import { useContext, useEffect, useState } from "react";
-import api from "../../services/api";
-import { Announcement } from "../../contexts/announcement";
-import { AuthContext } from "../../contexts/auth";
+import { useContext, useEffect, useState } from 'react';
+import api from '../../services/api';
+import { Announcement } from '../../contexts/announcement';
+import { AuthContext } from '../../contexts/auth';
+import ReactWhatsapp from 'react-whatsapp';
 
 export const ProductDetail = () => {
   const { id } = useParams();
@@ -50,14 +51,19 @@ export const ProductDetail = () => {
                   <span>{announcement?.mileage} KM</span>
                 </div>
                 <H7500>
-                  {Number(announcement?.price).toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
+                  {Number(announcement?.price).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
                   })}
                 </H7500>
               </div>
-
-              <button>comprar</button>
+              <ReactWhatsapp
+                number={announcement ? announcement.user.cell : ''}
+                message=""
+                element="button"
+              >
+                Comprar
+              </ReactWhatsapp>
             </VehicleInfo>
             <VehicleDescription>
               <H6600>Descrição</H6600>
@@ -77,14 +83,10 @@ export const ProductDetail = () => {
               </ul>
             </Gallery>
             <AdvertiserInfo>
-              <Avatar username={announcement?.user.name || ""} variant="big" />
+              <Avatar username={announcement?.user.name || ''} variant="big" />
               <H6600>{announcement?.user.name}</H6600>
               <B1400>{announcement?.user.description}</B1400>
-              <button
-                onClick={() =>
-                  navigate(`/userProfile/${announcement?.user.id}`)
-                }
-              >
+              <button onClick={() => navigate(`/userProfile/${announcement?.user.id}`)}>
                 Ver todos anuncios
               </button>
             </AdvertiserInfo>
