@@ -6,9 +6,9 @@ import {
   useContext,
   useEffect,
   useState,
-} from 'react';
-import api from '../services/api';
-import { AuthContext, IUser } from './auth';
+} from "react";
+import api from "../services/api";
+import { AuthContext, IUser } from "./auth";
 
 export interface Comment {
   id: string;
@@ -34,12 +34,12 @@ export interface Announcement {
   is_published: boolean;
   comments: Comment[];
   images: Image[];
-  user: Omit<IUser, 'announcements'>;
+  user: Omit<IUser, "announcements">;
 }
 
 export interface AnnouncementRequest
-  extends Omit<Announcement, 'id' | 'comments' | 'images' | 'user'> {
-  images: Omit<Image, 'id'>[];
+  extends Omit<Announcement, "id" | "comments" | "images" | "user"> {
+  images: Omit<Image, "id">[];
 }
 
 interface AnnouncementContextData {
@@ -56,7 +56,9 @@ interface AnnouncementProviderProps {
   children: ReactNode;
 }
 
-export const AnnouncementProvider = ({ children }: AnnouncementProviderProps) => {
+export const AnnouncementProvider = ({
+  children,
+}: AnnouncementProviderProps) => {
   const { reload, setReload } = useContext(AuthContext);
 
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
@@ -67,7 +69,7 @@ export const AnnouncementProvider = ({ children }: AnnouncementProviderProps) =>
 
   const getAnnouncements = async () => {
     try {
-      const resp = await api.get('/announcements');
+      const resp = await api.get("/announcements");
       setAnnouncements(resp.data);
     } catch (error) {
       console.error(error);
@@ -76,7 +78,7 @@ export const AnnouncementProvider = ({ children }: AnnouncementProviderProps) =>
 
   const createAnnouncement = async (data: AnnouncementRequest) => {
     try {
-      await api.post('/announcements', data);
+      await api.post("/announcements", data);
       setReload((prevValue) => !prevValue);
       return true;
     } catch (error) {

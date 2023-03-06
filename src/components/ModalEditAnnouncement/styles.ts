@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Form = styled.form`
   display: flex;
@@ -30,7 +30,7 @@ export const Form = styled.form`
 
       border-radius: 0.25rem;
       border: none;
-      font-family: 'Inter';
+      font-family: "Inter";
       font-size: 1rem;
       font-weight: 600;
       padding: 0.75rem 0.875rem;

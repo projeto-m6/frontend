@@ -1,28 +1,28 @@
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import { useContext, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { AuthContext, EditProfile } from '../../contexts/auth';
-import { B2500, H7500 } from '../../styles/typography';
-import { cpfMask, phoneMask } from '../../utils/masks';
-import { Input } from '../Input';
-import { ModalDeleteProfile } from '../ModalDeleteProfile';
-import { Form } from './styles';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import { useContext, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { AuthContext, EditProfile } from "../../contexts/auth";
+import { B2500, H7500 } from "../../styles/typography";
+import { cpfMask, phoneMask } from "../../utils/masks";
+import { Input } from "../Input";
+import { ModalDeleteProfile } from "../ModalDeleteProfile";
+import { Form } from "./styles";
 
 const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '90%',
-  maxWidth: '520px',
-  maxHeight: '90%',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "90%",
+  maxWidth: "520px",
+  maxHeight: "90%",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  overflow: 'scroll',
+  overflow: "scroll",
 };
 
 export const ModalEditProfile = () => {
@@ -34,8 +34,8 @@ export const ModalEditProfile = () => {
 
   const { user, editProfile } = useContext(AuthContext);
 
-  const [cpf, setCpf] = useState('');
-  const [phone, setPhone] = useState('');
+  const [cpf, setCpf] = useState("");
+  const [phone, setPhone] = useState("");
 
   const { register, handleSubmit } = useForm<EditProfile>({
     defaultValues: {
