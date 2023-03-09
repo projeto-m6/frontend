@@ -22,6 +22,10 @@ export const ResetPassword = (props: any) => {
     }
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
+
   const {
     register,
     handleSubmit,

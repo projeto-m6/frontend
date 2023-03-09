@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Avatar } from "../../components/Avatar";
 import Footer from "../../components/footer";
 import { Header } from "../../components/Header";
@@ -14,6 +14,10 @@ export const MyAds = () => {
   const { user } = useContext(AuthContext);
 
   const [openModalSuccess, setOpenModalSuccess] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
 
   return (
     <Container>

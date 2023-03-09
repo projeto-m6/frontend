@@ -25,6 +25,10 @@ export const UserProfile = () => {
     }
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
+
   return (
     <>
       <Header />

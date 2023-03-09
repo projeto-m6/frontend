@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Footer from "../../components/footer";
 
 import { Header } from "../../components/Header";
@@ -9,6 +9,9 @@ import { AnnouncementContext } from "../../contexts/announcement";
 
 const Dashboard = () => {
   const { announcements } = useContext(AnnouncementContext);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
 
   return (
     <>

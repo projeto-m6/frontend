@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Footer from "../../components/footer";
 import { Header } from "../../components/Header";
@@ -19,6 +19,10 @@ export const RequestResetPassword = () => {
   } = useForm<IRequestReset>({
     resolver: yupResolver(requestSchema),
   });
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
 
   return (
     <Container>

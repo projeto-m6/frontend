@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Footer from "../../components/footer";
@@ -23,6 +23,10 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const { login } = useContext(AuthContext);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
 
   return (
     <>
