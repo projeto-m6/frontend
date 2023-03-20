@@ -11,6 +11,9 @@ export const Form = styled.form`
     margin-bottom: 0.75rem;
 
     span {
+      transform: rotate(45deg);
+      font-size: 32px;
+      font-weight: 600;
       color: ${({ theme }) => theme.grey4};
       cursor: pointer;
     }
@@ -44,7 +47,7 @@ export const Form = styled.form`
     }
 
     button:last-child {
-      background-color: ${({ theme }) => theme.brand3};
+      background-color: ${({ theme }) => theme.brand2};
       color: ${({ theme }) => theme.brand4};
     }
   }

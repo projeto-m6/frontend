@@ -1,35 +1,36 @@
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useFieldArray, useForm } from "react-hook-form";
 
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import { Dispatch, SetStateAction, useContext, useState } from 'react';
-import { B2500, H7500 } from '../../styles/typography';
-import { InputRadio } from '../InputRadio';
-import { Form } from './styles';
-import { Input } from '../Input';
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { B2500, H7500 } from "../../styles/typography";
+import { InputRadio } from "../InputRadio";
+import { Form } from "./styles";
+import { Input } from "../Input";
 import {
   Announcement,
   AnnouncementContext,
   AnnouncementRequest,
-} from '../../contexts/announcement';
-import { Button } from '../ModalCreateAnnouncement/style';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { createAnnouncementSchema } from '../../validators/createAnnouncement';
+} from "../../contexts/announcement";
+import { Button } from "../ModalCreateAnnouncement/style";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { createAnnouncementSchema } from "../../validators/createAnnouncement";
 
 const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '90%',
-  height: '90%',
-  maxWidth: '520px',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "90%",
+  maxWidth: "520px",
+  maxHeight: "90%",
+  bgcolor: "background.paper",
+  border: "2px solid #ffffff",
+  borderRadius: "5px",
   boxShadow: 24,
-  px: 2,
-  py: 4,
-  overflow: 'scroll',
+  p: 4,
+  overflow: "scroll",
+  overflowX: "hidden",
 };
 
 interface ModalEditAnnouncementProps {
@@ -63,7 +64,7 @@ export const ModalEditAnnouncement = ({
   });
   const { fields, append } = useFieldArray({
     control,
-    name: 'images',
+    name: "images",
   });
 
   const onSubmit = (data: AnnouncementRequest) => {
@@ -84,7 +85,7 @@ export const ModalEditAnnouncement = ({
           <Form onSubmit={handleSubmit(onSubmit)}>
             <header>
               <H7500>Editar anúncio</H7500>
-              <span onClick={handleClose}>X</span>
+              <span onClick={handleClose}>+</span>
             </header>
 
             <B2500>Tipo de anúncio</B2500>
@@ -202,16 +203,24 @@ export const ModalEditAnnouncement = ({
               return (
                 <Input
                   key={field.id}
-                  label={index === 0 ? 'Imagem da Capa' : `${index}° Imagem da galeria`}
+                  label={
+                    index === 0
+                      ? "Imagem da Capa"
+                      : `${index}° Imagem da galeria`
+                  }
                   placeholder="Inserir URL da imagem"
                   name={`images.${index}.image_url`}
-                  errors={errors.images && errors.images[index] && errors.images[index]!.image_url}
+                  errors={
+                    errors.images &&
+                    errors.images[index] &&
+                    errors.images[index]!.image_url
+                  }
                   register={register}
                 />
               );
             })}
 
-            <Button type="button" onClick={() => append({ image_url: '' })}>
+            <Button type="button" onClick={() => append({ image_url: "" })}>
               Adicionar campo para imagem da galeria
             </Button>
 

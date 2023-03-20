@@ -6,13 +6,16 @@ export const ModalStyle = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "90%",
-  height: "90%",
-  maxWidth: "32.5rem",
+  maxWidth: "520px",
+  maxHeight: "90%",
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  border: "2px solid #ffffff",
+  borderRadius: "5px",
   boxShadow: 24,
   p: 4,
   overflow: "scroll",
+  overflowX: "hidden",
+  outline: "none",
 };
 
 export const Form = styled.form`
@@ -51,7 +54,7 @@ export const Form = styled.form`
     }
 
     button:last-child {
-      background-color: ${({ theme }) => theme.brand3};
+      background-color: ${({ theme }) => theme.brand2};
       color: ${({ theme }) => theme.brand4};
     }
   }

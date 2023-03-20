@@ -23,10 +23,14 @@ const style = {
   maxWidth: "520px",
   maxHeight: "90%",
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  border: "2px solid #ffffff",
+  borderRadius: "5px",
   boxShadow: 24,
   p: 4,
   overflow: "scroll",
+  overflowX: "hidden",
+  overflowY: "hidden",
+  outline: "none",
 };
 
 export const ModalEditAddress = () => {

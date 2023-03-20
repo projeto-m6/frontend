@@ -1,21 +1,26 @@
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import { useFieldArray, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { createAnnouncementSchema } from '../../validators/createAnnouncement';
-import { Button, Form, ModalStyle } from './style';
-import { B2500, H5500 } from '../../styles/typography';
-import { InputRadio } from '../InputRadio';
-import { ErrorMessage } from '../Input/styles';
-import { Input } from '../Input';
-import { AnnouncementContext, AnnouncementRequest } from '../../contexts/announcement';
-import { Dispatch, SetStateAction, useContext, useState } from 'react';
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { useFieldArray, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { createAnnouncementSchema } from "../../validators/createAnnouncement";
+import { Button, Form, ModalStyle } from "./style";
+import { B2500, H5500 } from "../../styles/typography";
+import { InputRadio } from "../InputRadio";
+import { ErrorMessage } from "../Input/styles";
+import { Input } from "../Input";
+import {
+  AnnouncementContext,
+  AnnouncementRequest,
+} from "../../contexts/announcement";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 
 interface ModalCreateAnnouncementProps {
   setOpenModalSuccess: Dispatch<SetStateAction<boolean>>;
 }
 
-export const ModalCreateAnnouncement = ({ setOpenModalSuccess }: ModalCreateAnnouncementProps) => {
+export const ModalCreateAnnouncement = ({
+  setOpenModalSuccess,
+}: ModalCreateAnnouncementProps) => {
   const {
     register,
     handleSubmit,
@@ -26,14 +31,14 @@ export const ModalCreateAnnouncement = ({ setOpenModalSuccess }: ModalCreateAnno
   } = useForm<AnnouncementRequest>({
     resolver: yupResolver(createAnnouncementSchema),
     defaultValues: {
-      images: [{ image_url: '' }, { image_url: '' }],
+      images: [{ image_url: "" }, { image_url: "" }],
     },
   });
 
   const { createAnnouncement } = useContext(AnnouncementContext);
   const { fields, append } = useFieldArray({
     control,
-    name: 'images',
+    name: "images",
   });
 
   const [isAuction, setIsAuction] = useState(false);
@@ -84,7 +89,9 @@ export const ModalCreateAnnouncement = ({ setOpenModalSuccess }: ModalCreateAnno
                 register={register}
               />
             </div>
-            {errors.is_sale && <ErrorMessage>Escolha uma das opções acima</ErrorMessage>}
+            {errors.is_sale && (
+              <ErrorMessage>Escolha uma das opções acima</ErrorMessage>
+            )}
 
             <B2500>Informações do veículo</B2500>
 
@@ -114,7 +121,7 @@ export const ModalCreateAnnouncement = ({ setOpenModalSuccess }: ModalCreateAnno
                 errors={errors.mileage}
               />
               <Input
-                label={isAuction ? 'Lance Incial' : 'Preço'}
+                label={isAuction ? "Lance Incial" : "Preço"}
                 placeholder="Digitar preço"
                 name="price"
                 maxLength={10}
@@ -140,24 +147,40 @@ export const ModalCreateAnnouncement = ({ setOpenModalSuccess }: ModalCreateAnno
                 register={register}
                 checked={true}
               />
-              <InputRadio id="moto" label="Moto" name="is_car" value="false" register={register} />
+              <InputRadio
+                id="moto"
+                label="Moto"
+                name="is_car"
+                value="false"
+                register={register}
+              />
             </div>
-            {errors.is_sale && <ErrorMessage>Escolha uma das opções acima</ErrorMessage>}
+            {errors.is_sale && (
+              <ErrorMessage>Escolha uma das opções acima</ErrorMessage>
+            )}
 
             {fields.map((field, index) => {
               return (
                 <Input
                   key={field.id}
-                  label={index === 0 ? 'Imagem da Capa' : `${index}° Imagem da galeria`}
+                  label={
+                    index === 0
+                      ? "Imagem da Capa"
+                      : `${index}° Imagem da galeria`
+                  }
                   placeholder="Inserir URL da imagem"
                   name={`images.${index}.image_url`}
                   register={register}
-                  errors={errors.images && errors.images[index] && errors.images[index]!.image_url}
+                  errors={
+                    errors.images &&
+                    errors.images[index] &&
+                    errors.images[index]!.image_url
+                  }
                 />
               );
             })}
 
-            <Button type="button" onClick={() => append({ image_url: '' })}>
+            <Button type="button" onClick={() => append({ image_url: "" })}>
               Adicionar campo para imagem da galeria
             </Button>
             <div className="buttonGroup">

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -31,13 +31,21 @@ export const Container = styled.div`
 
     .time {
       color: ${({ theme }) => theme.grey3};
-      font-family: 'Inter';
+      font-family: "Inter";
       font-size: 0.75rem;
       font-weight: 400;
     }
 
     .comment {
       display: flex;
+
+      & > button {
+        background: none;
+        border: none;
+        font-size: 22px;
+        color: ${({ theme }) => theme.grey2};
+        cursor: pointer;
+      }
       p {
         flex: 1;
       }
@@ -50,8 +58,8 @@ export const Container = styled.div`
 
         button {
           width: 100%;
-          padding: 4px 8px;
-          font-family: 'Inter';
+          padding: 6px 8px;
+          font-family: "Inter";
           font-weight: 500;
           font-size: 0.875rem;
 
@@ -67,12 +75,12 @@ export const Container = styled.div`
 
         button:first-child {
           color: ${({ theme }) => theme.grey1};
-          background-color: #ffc107;
+          background-color: ${({ theme }) => theme.grey7};
         }
 
         button:last-child {
-          color: ${({ theme }) => theme.white};
-          background-color: #dc3545;
+          color: ${({ theme }) => theme.grey1};
+          background-color: ${({ theme }) => theme.grey7};
         }
       }
     }

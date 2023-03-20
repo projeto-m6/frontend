@@ -1,21 +1,23 @@
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import { Dispatch, SetStateAction, useContext } from 'react';
-import { B1400, H7500 } from '../../styles/typography';
-import { Container } from './styles';
-import { CommentContext } from '../../contexts/comment';
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { Dispatch, SetStateAction, useContext } from "react";
+import { B1400, H7500 } from "../../styles/typography";
+import { Container } from "./styles";
+import { CommentContext } from "../../contexts/comment";
 
 const style = {
-  position: 'absolute' as 'absolute',
-  top: '20%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  maxWidth: '32.8125rem',
-  width: '90%',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  position: "absolute" as "absolute",
+  top: "20%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  maxWidth: "32.8125rem",
+  width: "90%",
+  bgcolor: "background.paper",
+  border: "2px solid #ffffff",
+  borderRadius: "5px",
   boxShadow: 24,
   p: 4,
+  outline: "none",
 };
 
 interface ModalDeleteCommentProps {
@@ -24,7 +26,11 @@ interface ModalDeleteCommentProps {
   id: string;
 }
 
-export const ModalDeleteComment = ({ openModal, setOpenModal, id }: ModalDeleteCommentProps) => {
+export const ModalDeleteComment = ({
+  openModal,
+  setOpenModal,
+  id,
+}: ModalDeleteCommentProps) => {
   const { deleteComment } = useContext(CommentContext);
 
   return (
@@ -46,15 +52,15 @@ export const ModalDeleteComment = ({ openModal, setOpenModal, id }: ModalDeleteC
                   setOpenModal(false);
                 }}
               >
-                X
+                +
               </span>
             </header>
 
             <main>
               <H7500>Tem certeza que deseja remover este comentário?</H7500>
               <B1400>
-                Essa ação não pode ser desfeita. Isso excluirá permanentemente sua conta e removerá
-                seus dados de nossos servidores.
+                Essa ação não pode ser desfeita. Isso excluirá permanentemente
+                sua conta e removerá seus dados de nossos servidores.
               </B1400>
 
               <div>
