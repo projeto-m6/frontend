@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Announcement } from "../../contexts/announcement";
 import { AuctionCards } from "../AuctionCards";
@@ -11,6 +12,28 @@ interface ShowCaseProps {
 
 export const ShowCase = ({ listAnnouncements }: ShowCaseProps) => {
   const location = useLocation();
+
+  const [carlist, setCarlist] = useState<Announcement[]>([]);
+  const [bikelist, setBikelist] = useState<Announcement[]>([]);
+
+  const filterAnnouncements = () => {
+    const cars = listAnnouncements.filter((annoucement) => {
+      if (annoucement.is_car) {
+        return annoucement;
+      }
+    });
+    const bikes = listAnnouncements.filter((annoucement) => {
+      if (!annoucement.is_car) {
+        return annoucement;
+      }
+    });
+    setCarlist(cars);
+    setBikelist(bikes);
+  };
+
+  useEffect(() => {
+    filterAnnouncements();
+  }, [listAnnouncements]);
 
   return (
     <>
@@ -26,7 +49,7 @@ export const ShowCase = ({ listAnnouncements }: ShowCaseProps) => {
               })}
             {listAnnouncements.length == 0 && (
               <div>
-                <p>Você ainda não criou nenhum anuncio nesta seção...</p>
+                <p>Ainda não há nenhum anuncio nesta seção...</p>
               </div>
             )}
           </div>
@@ -37,15 +60,13 @@ export const ShowCase = ({ listAnnouncements }: ShowCaseProps) => {
           <h2 id="cars">Carros</h2>
         </div>
         <div>
-          {listAnnouncements.length > 0 &&
-            listAnnouncements.map((announcement, index) => {
-              if (announcement.is_car) {
-                return <Card key={index} announcement={announcement} />;
-              }
-            })}
-          {listAnnouncements.length == 0 && (
+          {carlist.length > 0 ? (
+            carlist.map((announcement, index) => {
+              return <Card key={index} announcement={announcement} />;
+            })
+          ) : (
             <div>
-              <p>Você ainda não criou nenhum anuncio nesta seção...</p>
+              <p>Ainda não há nenhum anuncio nesta seção...</p>
             </div>
           )}
         </div>
@@ -55,15 +76,13 @@ export const ShowCase = ({ listAnnouncements }: ShowCaseProps) => {
           <h2 id="motorbikes">Motos</h2>
         </div>
         <div>
-          {listAnnouncements.length > 0 &&
-            listAnnouncements.map((announcement, index) => {
-              if (!announcement.is_car) {
-                return <Card key={index} announcement={announcement} />;
-              }
-            })}
-          {listAnnouncements.length == 0 && (
+          {bikelist.length > 0 ? (
+            bikelist.map((announcement, index) => {
+              return <Card key={index} announcement={announcement} />;
+            })
+          ) : (
             <div>
-              <p>Você ainda não criou nenhum anuncio nesta seção...</p>
+              <p>Ainda não há nenhum anuncio nesta seção...</p>
             </div>
           )}
         </div>

@@ -19,10 +19,14 @@ const style = {
   maxWidth: "520px",
   maxHeight: "90%",
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  border: "2px solid #ffffff",
+  borderRadius: "5px",
   boxShadow: 24,
   p: 4,
   overflow: "scroll",
+  overflowY: "hidden",
+  overflowX: "hidden",
+  outline: "none",
 };
 
 export const ModalEditProfile = () => {
@@ -71,7 +75,7 @@ export const ModalEditProfile = () => {
           <Form onSubmit={handleSubmit(onSubmit)}>
             <header>
               <H7500>Editar perfil</H7500>
-              <span onClick={handleClose}>X</span>
+              <span onClick={handleClose}>+</span>
             </header>
 
             <B2500>Infomações pessoais</B2500>

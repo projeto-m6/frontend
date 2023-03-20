@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   header {
@@ -7,6 +7,9 @@ export const Container = styled.div`
     margin-bottom: 0.75rem;
 
     span {
+      transform: rotate(45deg);
+      font-size: 32px;
+      font-weight: 600;
       color: ${({ theme }) => theme.grey4};
       cursor: pointer;
     }
@@ -30,7 +33,7 @@ export const Container = styled.div`
         border-radius: 0.25rem;
         border: none;
 
-        font-family: 'Inter';
+        font-family: "Inter";
         font-weight: 600;
         font-size: 1rem;
 
@@ -44,7 +47,7 @@ export const Container = styled.div`
         border-radius: 0.25rem;
         border: none;
 
-        font-family: 'Inter';
+        font-family: "Inter";
         font-weight: 600;
         font-size: 1rem;
 

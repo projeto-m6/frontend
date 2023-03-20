@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Form = styled.form`
   display: flex;
@@ -11,6 +11,9 @@ export const Form = styled.form`
     margin-bottom: 0.75rem;
 
     span {
+      transform: rotate(45deg);
+      font-size: 32px;
+      font-weight: 600;
       color: ${({ theme }) => theme.grey4};
       cursor: pointer;
     }
@@ -23,7 +26,7 @@ export const Form = styled.form`
 
     button {
       padding: 0.75rem 0.875rem;
-      font-family: 'Inter';
+      font-family: "Inter";
       font-weight: 600;
       font-size: 1rem;
       width: max-content;

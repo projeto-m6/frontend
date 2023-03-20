@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   header {
@@ -6,6 +6,9 @@ export const Container = styled.div`
     justify-content: space-between;
 
     span {
+      transform: rotate(45deg);
+      font-size: 32px;
+      font-weight: 600;
       cursor: pointer;
     }
   }
@@ -22,7 +25,7 @@ export const Container = styled.div`
       background-color: ${({ theme }) => theme.brand1};
       color: ${({ theme }) => theme.white};
       font-weight: 600;
-      font-family: 'Inter';
+      font-family: "Inter";
       width: fit-content;
       cursor: pointer;
     }

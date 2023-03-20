@@ -1,26 +1,28 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import { Dispatch, SetStateAction, useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { Comment } from '../../contexts/announcement';
-import { CommentContext, ICommentRequest } from '../../contexts/comment';
-import { H7500 } from '../../styles/typography';
-import { commentSchema } from '../../validators/comment';
-import { ErrorMessage } from '../Input/styles';
-import { Form } from './styles';
-import { Container } from './styles';
+import { yupResolver } from "@hookform/resolvers/yup";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { Dispatch, SetStateAction, useContext } from "react";
+import { useForm } from "react-hook-form";
+import { Comment } from "../../contexts/announcement";
+import { CommentContext, ICommentRequest } from "../../contexts/comment";
+import { H7500 } from "../../styles/typography";
+import { commentSchema } from "../../validators/comment";
+import { ErrorMessage } from "../Input/styles";
+import { Form } from "./styles";
+import { Container } from "./styles";
 
 const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #ffffff",
+  borderRadius: "5px",
   boxShadow: 24,
   p: 4,
+  outline: "none",
 };
 
 interface ModalEditCommentProps {
@@ -29,7 +31,11 @@ interface ModalEditCommentProps {
   comment: Comment;
 }
 
-export const ModalEditComment = ({ openModal, setOpenModal, comment }: ModalEditCommentProps) => {
+export const ModalEditComment = ({
+  openModal,
+  setOpenModal,
+  comment,
+}: ModalEditCommentProps) => {
   const { editComment } = useContext(CommentContext);
 
   const {
@@ -62,14 +68,14 @@ export const ModalEditComment = ({ openModal, setOpenModal, comment }: ModalEdit
                   setOpenModal(false);
                 }}
               >
-                X
+                +
               </span>
             </header>
 
             <Form error={!!errors.comment} onSubmit={handleSubmit(onSubmit)}>
               <textarea
                 spellCheck="false"
-                {...register('comment', {
+                {...register("comment", {
                   value: comment.comment,
                 })}
               ></textarea>
