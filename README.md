@@ -34,24 +34,24 @@ yarn dev
 ## Páginas
 Login
 Página de login para acesso ao sistema. Possui os seguintes campos obrigatórios:
-E-mail
-Senha
+- E-mail
+- Senha
 
 ## Registro
 Página de registro para criar uma nova conta no sistema. Possui os seguintes campos obrigatórios:
-Nome
-E-mail
-CPF
-Celular
-Data de Nascimento
-Descrição
-CEP
-Estado
-Cidade
-Rua
-Número
-Tipo de conta (Comprador ou Anunciante)
-Senha
+- Nome
+- E-mail
+- CPF
+- Celular
+-  Data de Nascimento
+- Descrição
+- CEP
+- Estado
+- Cidade
+- Rua
+- Número
+- Tipo de conta (Comprador ou Anunciante)
+- Senha
 
 ## Página do Anunciante
 Página para visualização dos anúncios criados pelo anunciante. O anunciante pode editar os anúncios e escolher entre anúncio de venda ou leilão.
