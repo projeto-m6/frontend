@@ -55,7 +55,7 @@ export const Login = () => {
 
               <button type="submit">Entrar</button>
 
-              <a href="http://localhost:5173/request-password">
+              <a href="https://motorshop-eosin.vercel.app//request-password">
                 Esqueceu a senha?
               </a>
             </form>
