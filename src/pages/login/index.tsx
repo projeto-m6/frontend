@@ -55,9 +55,16 @@ export const Login = () => {
 
               <button type="submit">Entrar</button>
 
-              <a href="https://motorshop-eosin.vercel.app/request-password">
+              <button
+                style={{
+                  color: "blue",
+                  border: "none",
+                  backgroundColor: "transparent",
+                }}
+                onClick={() => navigate("/request-password")}
+              >
                 Esqueceu a senha?
-              </a>
+              </button>
             </form>
             <div className="containerRegister">
               <B1600>Ainda nao tem uma conta?</B1600>
